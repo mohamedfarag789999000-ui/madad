@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تسجيل دخول الإدارة | مِداد</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(123,47,247,.14), transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(247,37,133,.12), transparent 30%),
+        #fff9f3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-wrapper {
+      width: min(460px, 100%);
+    }
+
+    .login-card {
+      background: rgba(255,255,255,.96);
+      border: 1px solid rgba(123,47,247,.12);
+      border-radius: 28px;
+      padding: 40px 30px;
+      box-shadow: 0 25px 70px rgba(43,29,61,.15);
+    }
+
+    .logo {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 18px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 32px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #7b2ff7, #f72585);
+      box-shadow: 0 15px 35px rgba(123,47,247,.25);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0;
+      color: #2b1d3d;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #7d7084;
+      margin: 8px 0 30px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #35263f;
+      font-weight: 800;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px 16px;
+      border: 2px solid #eee5f4;
+      border-radius: 15px;
+      outline: none;
+      font-family: inherit;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: .2s;
+    }
+
+    input:focus {
+      border-color: #7b2ff7;
+      box-shadow: 0 0 0 4px rgba(123,47,247,.08);
+    }
+
+    .login-btn {
+      width: 100%;
+      height: 56px;
+      border: 0;
+      border-radius: 16px;
+      color: white;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 900;
+      cursor: pointer;
+      background: linear-gradient(135deg, #7b2ff7, #f72585);
+      box-shadow: 0 12px 30px rgba(123,47,247,.25);
+      transition: .2s;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .login-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    #message {
+      display: none;
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 13px;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    #message.show {
+      display: block;
+    }
+
+    #message.error {
+      color: #b42345;
+      background: #fff0f2;
+      border: 1px solid #f3c1ca;
+    }
+
+    #message.success {
+      color: #16733b;
+      background: #eafaf0;
+      border: 1px solid #bde8cc;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 22px;
+      color: #7b2ff7;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .security {
+      margin-top: 25px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #faf7fc;
+      color: #786b80;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 500px) {
+      .login-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-wrapper">
+
+    <div class="login-card">
+
+      <div class="logo">م</div>
+
+      <h1>دخول الإدارة</h1>
+
+      <p class="subtitle">
+        مرحبًا بك في لوحة إدارة مِداد
+      </p>
+
+      <form id="login-form">
+
+        <div class="field">
+
+          <label for="password">
+            كلمة المرور
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="اكتب كلمة مرور الإدارة"
+            autocomplete="current-password"
+            required
+          >
+
+        </div>
+
+        <button
+          type="submit"
+          class="login-btn"
+          id="login-btn"
+        >
+          🔐 دخول الإدارة
+        </button>
+
+      </form>
+
+      <div id="message"></div>
+
+      <div class="security">
+        🛡️ هذه الصفحة مخصصة لإدارة محتوى منصة مِداد.
+      </div>
+
+      <a href="index.html" class="back">
+        ← العودة إلى الصفحة الرئيسية
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const form =
+      document.getElementById("login-form");
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const loginBtn =
+      document.getElementById("login-btn");
+
+    const message =
+      document.getElementById("message");
+
+
+    function showMessage(text, type) {
+
+      message.textContent = text;
+
+      message.className =
+        "show " + type;
+
+    }
+
+
+    form.addEventListener(
+      "submit",
+      async function(e) {
+
+        e.preventDefault();
+
+        const password =
+          passwordInput.value.trim();
+
+        if (!password) {
+
+          showMessage(
+            "اكتب كلمة المرور أولًا.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        loginBtn.disabled = true;
+
+        loginBtn.textContent =
+          "⏳ جاري تسجيل الدخول...";
+
+
+        try {
+
+          const response =
+            await fetch(
+              "/api/login",
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                credentials: "same-origin",
+
+                body: JSON.stringify({
+                  password: password
+                })
+              }
+            );
+
+
+          let data;
+
+          try {
+
+            data =
+              await response.json();
+
+          } catch {
+
+            throw new Error(
+              "السيرفر لم يُرجع استجابة صحيحة."
+            );
+
+          }
+
+
+          if (
+            response.ok &&
+            data.success === true
+          ) {
+
+            showMessage(
+              "✅ تم تسجيل الدخول بنجاح، جاري فتح لوحة الإدارة...",
+              "success"
+            );
+
+
+            setTimeout(
+              function() {
+
+                window.location.href =
+                  "/add.html";
+
+              },
+              500
+            );
+
+
+            return;
+          }
+
+
+          showMessage(
+            data.error ||
+            "كلمة المرور غير صحيحة.",
+            "error"
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "LOGIN ERROR:",
+            error
+          );
+
+          showMessage(
+            "❌ تعذر الاتصال بالسيرفر. تأكد أن server.js يعمل.",
+            "error"
+          );
+
+        } finally {
+
+          loginBtn.disabled = false;
+
+          loginBtn.textContent =
+            "🔐 دخول الإدارة";
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>

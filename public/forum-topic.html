@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>موضوع - مِداد</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">مِداد</div>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="forum.html">المنتدى</a>
+    </div>
+  </nav>
+
+  <div class="container" id="topic-container">
+    <p>جاري التحميل...</p>
+  </div>
+
+  <div class="container" style="margin-top: -20px;">
+    <div class="article-card">
+      <h3>الردود</h3>
+      <div id="reply-form-area"></div>
+      <div id="replies-list" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const topicId = params.get('id');
+
+    fetch('/api/forum/topics/' + topicId)
+      .then(res => res.json())
+      .then(topic => {
+        const container = document.getElementById('topic-container');
+        if (topic.error) {
+          container.innerHTML = '<p>الموضوع غير موجود</p>';
+          return;
+        }
+        container.innerHTML = `
+          <div class="article-card">
+            <span class="category-badge">${topic.section}</span>
+            <h2>${topic.title}</h2>
+            <p style="color: #888; font-size: 13px; margin-bottom: 12px;">بواسطة ${topic.user_name}</p>
+            <p style="white-space: pre-line;">${topic.content}</p>
+          </div>
+        `;
+      });
+
+    fetch('/api/current-user')
+      .then(res => res.json())
+      .then(data => {
+        const formArea = document.getElementById('reply-form-area');
+        if (data.loggedIn) {
+          formArea.innerHTML = `
+            <form id="reply-form">
+              <textarea id="reply-content" rows="3" placeholder="اكتب ردك..." style="width: 100%; padding: 8px;" required></textarea>
+              <button type="submit" style="margin-top: 8px; padding: 8px 18px; background: #4a4de7; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                نشر الرد
+              </button>
+            </form>
+          `;
+
+          document.getElementById('reply-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const content = document.getElementById('reply-content').value;
+
+            fetch(`/api/forum/topics/${topicId}/replies`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ content })
+            })
+            .then(res => res.json())
+            .then(data => {
+              if (data.success) {
+                document.getElementById('reply-content').value = '';
+                loadReplies();
+              }
+            });
+          });
+        } else {
+          formArea.innerHTML = `<p><a href="user-login.html">سجل دخول</a> عشان تقدر ترد</p>`;
+        }
+      });
+
+    function loadReplies() {
+      fetch(`/api/forum/topics/${topicId}/replies`)
+        .then(res => res.json())
+        .then(replies => {
+          const list = document.getElementById('replies-list');
+          list.innerHTML = '';
+
+          if (replies.length === 0) {
+            list.innerHTML = '<p style="color: #888;">لا توجد ردود بعد</p>';
+            return;
+          }
+
+          replies.forEach(reply => {
+            const div = document.createElement('div');
+            div.className = 'comment-item';
+            div.innerHTML = `
+              <strong>${reply.user_name}</strong>
+              <p>${reply.content}</p>
+            `;
+            list.appendChild(div);
+          });
+        });
+    }
+
+    loadReplies();
+  </script>
+
+</body>
+</html>

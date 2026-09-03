@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بيانات التواصل | مِداد</title>
+
+    <meta
+        name="description"
+        content="تواصل مع مِداد عبر YouTube وFacebook وTikTok وInstagram وWhatsApp والبريد الإلكتروني."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================================
+           CONTACT PAGE — MADAD
+           صفحة بيانات التواصل الاحترافية
+        ========================================================= */
+
+        :root {
+            --contact-bg: #080914;
+            --contact-bg-2: #101225;
+            --contact-card: rgba(255,255,255,.065);
+            --contact-border: rgba(255,255,255,.12);
+            --contact-text: #ffffff;
+            --contact-muted: #aeb4c9;
+            --purple: #7c3aed;
+            --pink: #ec4899;
+            --blue: #3b82f6;
+            --cyan: #06b6d4;
+            --green: #22c55e;
+            --orange: #f97316;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Cairo", sans-serif;
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(124,58,237,.22),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(236,72,153,.16),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(6,182,212,.12),
+                    transparent 32%
+                ),
+                var(--contact-bg);
+            color: var(--contact-text);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        .contact-navbar {
+            width: 100%;
+            padding: 18px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(8,9,20,.76);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        .contact-nav-inner {
+            max-width: 1250px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .contact-logo {
+            font-size: 28px;
+            font-weight: 900;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #c4b5fd,
+                #f9a8d4
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .contact-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 11px 20px;
+            border-radius: 14px;
+
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.12);
+
+            color: #fff;
+            font-weight: 700;
+
+            transition: .3s ease;
+        }
+
+        .contact-home-btn:hover {
+            transform: translateY(-3px);
+            background: rgba(124,58,237,.25);
+            border-color: rgba(167,139,250,.5);
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .contact-hero {
+            position: relative;
+            overflow: hidden;
+
+            max-width: 1250px;
+            margin: auto;
+
+            min-height: 470px;
+            padding: 90px 30px 70px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(3px);
+        }
+
+        .hero-orb.one {
+            width: 240px;
+            height: 240px;
+
+            top: 10px;
+            right: -80px;
+
+            background: rgba(124,58,237,.18);
+        }
+
+        .hero-orb.two {
+            width: 200px;
+            height: 200px;
+
+            bottom: -50px;
+            left: -60px;
+
+            background: rgba(236,72,153,.15);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 9px 17px;
+
+            border-radius: 50px;
+
+            background: rgba(124,58,237,.13);
+            border: 1px solid rgba(167,139,250,.25);
+
+            color: #c4b5fd;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            margin-bottom: 22px;
+
+            animation: floatBadge 4s ease-in-out infinite;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+
+            background: #22c55e;
+
+            box-shadow: 0 0 15px #22c55e;
+        }
+
+        @keyframes floatBadge {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .contact-hero h1 {
+            margin: 0;
+
+            font-size: clamp(42px, 7vw, 78px);
+            line-height: 1.05;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff 10%,
+                    #c4b5fd 42%,
+                    #f9a8d4 72%,
+                    #ffffff 95%
+                );
+
+            background-size: 250% auto;
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+
+            animation: gradientMove 7s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            to {
+                background-position: 250% center;
+            }
+        }
+
+        .contact-hero p {
+            max-width: 760px;
+
+            margin: 25px auto 0;
+
+            color: var(--contact-muted);
+
+            font-size: 18px;
+            line-height: 2;
+
+            font-weight: 500;
+        }
+
+        /* =========================================================
+           SOCIAL GRID
+        ========================================================= */
+
+        .contact-section {
+            max-width: 1250px;
+            margin: auto;
+            padding: 20px 25px 90px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .section-heading span {
+            display: block;
+
+            color: #a78bfa;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 900;
+        }
+
+        .section-heading p {
+            color: var(--contact-muted);
+            margin: 10px auto 0;
+        }
+
+        .social-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 22px;
+        }
+
+        .social-card {
+            position: relative;
+            overflow: hidden;
+
+            min-height: 245px;
+
+            padding: 30px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.09),
+                    rgba(255,255,255,.025)
+                );
+
+            border: 1px solid var(--contact-border);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.25),
+                inset 0 1px 0 rgba(255,255,255,.06);
+
+            transition:
+                transform .35s ease,
+                border-color .35s ease,
+                box-shadow .35s ease;
+        }
+
+        .social-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            top: -100px;
+            left: -80px;
+
+            border-radius: 50%;
+
+            background: var(--card-color);
+
+            opacity: .14;
+
+            filter: blur(20px);
+
+            transition: .4s ease;
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px);
+
+            border-color: var(--card-color);
+
+            box-shadow:
+                0 30px 90px rgba(0,0,0,.38),
+                0 0 35px var(--card-glow);
+        }
+
+        .social-card:hover::before {
+            transform: scale(1.5);
+            opacity: .23;
+        }
+
+        .social-top {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .social-icon {
+            width: 62px;
+            height: 62px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 19px;
+
+            background: var(--card-color);
+
+            box-shadow:
+                0 12px 30px var(--card-glow);
+
+            font-size: 27px;
+            font-weight: 900;
+
+            color: #fff;
+        }
+
+        .social-number {
+            color: rgba(255,255,255,.35);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .social-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-content h3 {
+            margin: 24px 0 5px;
+
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+        .social-content p {
+            margin: 0;
+
+            color: var(--contact-muted);
+
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .social-arrow {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 20px;
+
+            color: #fff;
+
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .arrow-circle {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255,255,255,.09);
+
+            transition: .3s ease;
+        }
+
+        .social-card:hover .arrow-circle {
+            transform: translateX(-5px);
+            background: var(--card-color);
+        }
+
+        /* =========================================================
+           CARD COLORS
+        ========================================================= */
+
+        .youtube {
+            --card-color: #ff0033;
+            --card-glow: rgba(255,0,51,.25);
+        }
+
+        .facebook {
+            --card-color: #1877f2;
+            --card-glow: rgba(24,119,242,.25);
+        }
+
+        .tiktok {
+            --card-color: #25f4ee;
+            --card-glow: rgba(37,244,238,.20);
+        }
+
+        .instagram {
+            --card-color: #e1306c;
+            --card-glow: rgba(225,48,108,.25);
+        }
+
+        .whatsapp {
+            --card-color: #25d366;
+            --card-glow: rgba(37,211,102,.25);
+        }
+
+        .email {
+            --card-color: #8b5cf6;
+            --card-glow: rgba(139,92,246,.25);
+        }
+
+        /* =========================================================
+           DIRECT CONTACT
+        ========================================================= */
+
+        .direct-contact {
+            margin-top: 75px;
+
+            padding: 45px;
+
+            border-radius: 32px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124,58,237,.20),
+                    rgba(236,72,153,.11),
+                    rgba(6,182,212,.08)
+                );
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.25);
+
+            text-align: center;
+        }
+
+        .direct-contact h2 {
+            margin: 0 0 12px;
+
+            font-size: 34px;
+            font-weight: 900;
+        }
+
+        .direct-contact p {
+            max-width: 700px;
+            margin: auto;
+
+            color: #c5c9d8;
+
+            line-height: 2;
+        }
+
+        .direct-buttons {
+            margin-top: 28px;
+
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            gap: 14px;
+        }
+
+        .direct-btn {
+            min-width: 190px;
+
+            padding: 14px 22px;
+
+            border-radius: 15px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            font-weight: 800;
+
+            transition: .3s ease;
+        }
+
+        .direct-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .direct-btn.whatsapp-btn {
+            background: #25d366;
+            color: #061b0e;
+
+            box-shadow: 0 15px 35px rgba(37,211,102,.18);
+        }
+
+        .direct-btn.email-btn {
+            background: #fff;
+            color: #151525;
+
+            box-shadow: 0 15px 35px rgba(255,255,255,.10);
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .contact-footer {
+            border-top: 1px solid rgba(255,255,255,.08);
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            color: #8f95aa;
+
+            font-size: 14px;
+        }
+
+        .contact-footer strong {
+            color: #c4b5fd;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 950px) {
+            .social-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+            .contact-navbar {
+                padding: 14px 18px;
+            }
+
+            .contact-logo {
+                font-size: 23px;
+            }
+
+            .contact-home-btn {
+                padding: 9px 13px;
+                font-size: 13px;
+            }
+
+            .contact-hero {
+                min-height: 410px;
+                padding: 70px 20px 55px;
+            }
+
+            .contact-hero p {
+                font-size: 15px;
+                line-height: 1.9;
+            }
+
+            .contact-section {
+                padding: 10px 16px 60px;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-card {
+                min-height: 225px;
+            }
+
+            .direct-contact {
+                padding: 32px 20px;
+                border-radius: 25px;
+            }
+
+            .direct-contact h2 {
+                font-size: 27px;
+            }
+
+            .direct-btn {
+                width: 100%;
+            }
+        }
+
+        /* =========================================================
+           ACCESSIBILITY
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================= -->
+
+    <header class="contact-navbar">
+        <div class="contact-nav-inner">
+
+            <a href="index.html" class="contact-logo">
+                مِداد
+            </a>
+
+            <a href="index.html" class="contact-home-btn">
+                <span>←</span>
+                العودة للرئيسية
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <main>
+
+        <section class="contact-hero">
+
+            <div class="hero-orb one"></div>
+            <div class="hero-orb two"></div>
+
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                نحن متاحون للتواصل
+            </div>
+
+            <h1>
+                تواصل مع مِداد
+            </h1>
+
+            <p>
+                تابع أحدث المحتوى، وتواصل معنا عبر منصاتنا المختلفة.
+                اختر الطريقة التي تناسبك للوصول إلى مِداد ومتابعة كل جديد.
+            </p>
+
+        </section>
+
+
+        <!-- =====================================================
+             SOCIAL SECTION
+        ===================================================== -->
+
+        <section class="contact-section">
+
+            <div class="section-heading">
+
+                <span>
+                    FIND US ONLINE
+                </span>
+
+                <h2>
+                    منصات مِداد الرسمية
+                </h2>
+
+                <p>
+                    جميع طرق التواصل والوصول إلينا في مكان واحد
+                </p>
+
+            </div>
+
+
+            <div class="social-grid">
+
+                <!-- YouTube -->
+
+                <a
+                    class="social-card youtube"
+                    href="https://www.youtube.com/@mohamedfarag-g4f"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="social-top">
+
+                        <div class="social-icon">
+                            ▶
+                        </div>
+
+                        <span class="social-number">
+                            01
+                        </span>
+
+                    </div>
+
+                    <div class="social-content">
+
+                        <h3>
+                            YouTube
+                        </h3>
+
+                        <p>
+                            شاهد المحتوى التعليمي والمقاطع الجديدة
+                            وتابع رحلة مِداد على YouTube.
+                        </p>
+
+                    </div>
+
+                    <div class="social-arrow">
+                        <span>زيارة القناة</span>
+
+                        <span class="arrow-circle">
+                            ←
+                        </span>
+                    </div>
+
+                </a>
+
+
+                <!-- Facebook -->
+
+                <a
+                    class="social-card facebook"
+                    href="https://www.facebook.com/share/1FKvNVPoRu/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="social-top">
+
+                        <div class="social-icon">
+                            f
+                        </div>
+
+                        <span class="social-number">
+                            02
+                        </span>
+
+                    </div>
+
+                    <div class="social-content">
+
+                        <h3>
+                            Facebook
+                        </h3>
+
+                        <p>
+                            تابع الأخبار والتحديثات والمنشورات
+                            الجديدة على صفحتنا.
+                        </p>
+
+                    </div>
+
+                    <div class="social-arrow">
+                        <span>زيارة الصفحة</span>
+
+                        <span class="arrow-circle">
+                            ←
+                        </span>
+                    </div>
+
+                </a>
+
+
+                <!-- TikTok -->
+
+                <a
+                    class="social-card tiktok"
+                    href="https://www.tiktok.com/@mohamed.farag8425"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="social-top">
+
+                        <div class="social-icon">
+                            ♪
+                        </div>
+
+                        <span class="social-number">
+                            03
+                        </span>
+
+                    </div>
+
+                    <div class="social-content">
+
+                        <h3>
+                            TikTok
+                        </h3>
+
+                        <p>
+                            مقاطع قصيرة وسريعة ومحتوى متنوع
+                            عبر حساب مِداد على TikTok.
+                        </p>
+
+                    </div>
+
+                    <div class="social-arrow">
+                        <span>زيارة الحساب</span>
+
+                        <span class="arrow-circle">
+                            ←
+                        </span>
+                    </div>
+
+                </a>
+
+
+                <!-- Instagram -->
+
+                <a
+                    class="social-card instagram"
+                    href="https://www.instagram.com/mohamedfarag7899990000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="social-top">
+
+                        <div class="social-icon">
+                            ◎
+                        </div>
+
+                        <span class="social-number">
+                            04
+                        </span>
+
+                    </div>
+
+                    <div class="social-content">
+
+                        <h3>
+                            Instagram
+                        </h3>
+
+                        <p>
+                            صور وتحديثات ومحتوى إضافي من رحلة
+                            مِداد على Instagram.
+                        </p>
+
+                    </div>
+
+                    <div class="social-arrow">
+                        <span>زيارة الحساب</span>
+
+                        <span class="arrow-circle">
+                            ←
+                        </span>
+                    </div>
+
+                </a>
+
+
+                <!-- WhatsApp -->
+
+                <a
+                    class="social-card whatsapp"
+                    href="https://wa.me/201207449505"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="social-top">
+
+                        <div class="social-icon">
+                            ☎
+                        </div>
+
+                        <span class="social-number">
+                            05
+                        </span>
+
+                    </div>
+
+                    <div class="social-content">
+
+                        <h3>
+                            WhatsApp
+                        </h3>
+
+                        <p>
+                            يمكنك التواصل معنا مباشرة عبر WhatsApp
+                            للاستفسارات والتواصل.
+                        </p>
+
+                    </div>
+
+                    <div class="social-arrow">
+                        <span>فتح WhatsApp</span>
+
+                        <span class="arrow-circle">
+                            ←
+                        </span>
+                    </div>
+
+                </a>
+
+
+                <!-- Email -->
+
+                <a
+                    class="social-card email"
+                    href="mailto:mohamedfarag789999000@gmail.com"
+                >
+
+                    <div class="social-top">
+
+                        <div class="social-icon">
+                            @
+                        </div>
+
+                        <span class="social-number">
+                            06
+                        </span>
+
+                    </div>
+
+                    <div class="social-content">
+
+                        <h3>
+                            البريد الإلكتروني
+                        </h3>
+
+                        <p>
+                            للتواصل عبر البريد الإلكتروني وإرسال
+                            الاستفسارات والرسائل.
+                        </p>
+
+                    </div>
+
+                    <div class="social-arrow">
+                        <span>إرسال رسالة</span>
+
+                        <span class="arrow-circle">
+                            ←
+                        </span>
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 DIRECT CONTACT
+            ================================================= -->
+
+            <section class="direct-contact">
+
+                <h2>
+                    محتاج تتواصل معنا مباشرة؟
+                </h2>
+
+                <p>
+                    اختر WhatsApp للتواصل السريع أو البريد الإلكتروني
+                    لإرسال رسالة مفصلة. نحن نرحب برسائلك واستفساراتك.
+                </p>
+
+                <div class="direct-buttons">
+
+                    <a
+                        href="https://wa.me/201207449505"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="direct-btn whatsapp-btn"
+                    >
+                        <span>💬</span>
+                        التواصل عبر WhatsApp
+                    </a>
+
+                    <a
+                        href="mailto:mohamedfarag789999000@gmail.com"
+                        class="direct-btn email-btn"
+                    >
+                        <span>✉️</span>
+                        إرسال بريد إلكتروني
+                    </a>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer class="contact-footer">
+
+        © 2026
+        <strong>مِداد</strong>
+        — جميع الحقوق محفوظة
+
+    </footer>
+
+</body>
+</html>

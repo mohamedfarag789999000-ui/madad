@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>المنتدى - مِداد</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">مِداد</div>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="about.html">من نحن</a>
+      <a href="forum.html">المنتدى</a>
+    </div>
+  </nav>
+
+  <section class="hero" style="padding: 50px 20px;">
+    <h1 style="font-size: 34px;">منتدى مِداد</h1>
+    <p>ناقش، اسأل، وشارك مع المجتمع</p>
+  </section>
+
+  <div class="categories-bar" id="sections-bar">
+    <button class="cat-btn active" onclick="filterSection('الكل')">الكل</button>
+    <button class="cat-btn" onclick="filterSection('تقنية')">تقنية</button>
+    <button class="cat-btn" onclick="filterSection('ذكاء اصطناعي')">ذكاء اصطناعي</button>
+    <button class="cat-btn" onclick="filterSection('عمل حر')">عمل حر</button>
+    <button class="cat-btn" onclick="filterSection('تعليم')">تعليم</button>
+    <button class="cat-btn" onclick="filterSection('ريادة أعمال')">ريادة أعمال</button>
+  </div>
+
+  <div class="container">
+    <div id="new-topic-area"></div>
+    <div id="topics-container">
+      <p>جاري تحميل المواضيع...</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 مِداد — منصة عربية للمعرفة</p>
+  </footer>
+
+  <script>
+    let currentSection = 'الكل';
+    let isUserLoggedIn = false;
+
+    fetch('/api/current-user')
+      .then(res => res.json())
+      .then(data => {
+        isUserLoggedIn = data.loggedIn;
+        renderNewTopicForm();
+      });
+
+    function renderNewTopicForm() {
+      const area = document.getElementById('new-topic-area');
+      if (isUserLoggedIn) {
+        area.innerHTML = `
+          <div class="article-card">
+            <h3>إضافة موضوع جديد</h3>
+            <form id="new-topic-form" style="margin-top: 15px;">
+              <div style="margin-bottom: 12px;">
+                <label>القسم</label><br>
+                <select id="topic-section" style="width: 100%; padding: 8px; margin-top: 5px;">
+                  <option value="تقنية">تقنية</option>
+                  <option value="ذكاء اصطناعي">ذكاء اصطناعي</option>
+                  <option value="عمل حر">عمل حر</option>
+                  <option value="تعليم">تعليم</option>
+                  <option value="ريادة أعمال">ريادة أعمال</option>
+                </select>
+              </div>
+              <div style="margin-bottom: 12px;">
+                <label>عنوان الموضوع</label><br>
+                <input type="text" id="topic-title" style="width: 100%; padding: 8px; margin-top: 5px;" required>
+              </div>
+              <div style="margin-bottom: 12px;">
+                <label>المحتوى</label><br>
+                <textarea id="topic-content" rows="4" style="width: 100%; padding: 8px; margin-top: 5px;" required></textarea>
+              </div>
+              <button type="submit" style="padding: 9px 20px; background: #4a4de7; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                نشر الموضوع
+              </button>
+            </form>
+          </div>
+        `;
+
+        document.getElementById('new-topic-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const section = document.getElementById('topic-section').value;
+          const title = document.getElementById('topic-title').value;
+          const content = document.getElementById('topic-content').value;
+
+          fetch('/api/forum/topics', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ section, title, content })
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              window.location.href = 'forum-topic.html?id=' + data.id;
+            }
+          });
+        });
+      } else {
+        area.innerHTML = `<p style="margin-bottom: 20px;"><a href="user-login.html">سجل دخول</a> عشان تقدر تضيف موضوع</p>`;
+      }
+    }
+
+    function filterSection(section) {
+      currentSection = section;
+      document.querySelectorAll('#sections-bar .cat-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      loadTopics();
+    }
+
+    function loadTopics() {
+      const url = currentSection === 'الكل'
+        ? '/api/forum/topics'
+        : '/api/forum/topics?section=' + encodeURIComponent(currentSection);
+
+      fetch(url)
+        .then(res => res.json())
+        .then(topics => {
+          const container = document.getElementById('topics-container');
+          container.innerHTML = '';
+
+          if (topics.length === 0) {
+            container.innerHTML = '<p>لا توجد مواضيع في هذا القسم بعد</p>';
+            return;
+          }
+
+          topics.forEach(topic => {
+            const card = document.createElement('div');
+            card.className = 'article-card';
+            card.innerHTML = `
+              <span class="category-badge">${topic.section}</span>
+              <h2><a href="forum-topic.html?id=${topic.id}">${topic.title}</a></h2>
+              <p style="color: #888; font-size: 13px;">بواسطة ${topic.user_name}</p>
+            `;
+            container.appendChild(card);
+          });
+        });
+    }
+
+    loadTopics();
+  </script>
+
+</body>
+</html>

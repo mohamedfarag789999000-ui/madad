@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="إنشاء حساب جديد في منصة مِداد"
+  >
+
+  <title>مِداد | إنشاء حساب</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       REGISTER PAGE
+    ========================= */
+
+    .auth-page {
+      min-height: calc(100vh - 80px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 50px 20px;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(123, 47, 247, 0.08),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(247, 37, 133, 0.08),
+          transparent 28%
+        );
+    }
+
+    .auth-wrapper {
+      width: 100%;
+      max-width: 1050px;
+
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+
+      background: #fff;
+
+      border-radius: 30px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 25px 70px rgba(43, 29, 61, 0.13);
+
+      border: 1px solid rgba(123, 47, 247, 0.08);
+    }
+
+    /* =========================
+       الجانب التعريفي
+    ========================= */
+
+    .auth-intro {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 55px 42px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          145deg,
+          #2b1d3d 0%,
+          #4b2671 42%,
+          #7b2ff7 72%,
+          #f72585 100%
+        );
+
+      overflow: hidden;
+    }
+
+    .auth-intro::before {
+      content: "";
+
+      position: absolute;
+
+      width: 260px;
+      height: 260px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.08);
+
+      top: -100px;
+      right: -90px;
+    }
+
+    .auth-intro::after {
+      content: "";
+
+      position: absolute;
+
+      width: 210px;
+      height: 210px;
+
+      border-radius: 50%;
+
+      background: rgba(255,107,53,0.15);
+
+      bottom: -90px;
+      left: -70px;
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .intro-logo {
+      display: inline-block;
+
+      font-size: 46px;
+
+      font-weight: 900;
+
+      margin-bottom: 12px;
+
+      color: white;
+    }
+
+    .intro-title {
+      font-size: 31px;
+
+      line-height: 1.5;
+
+      font-weight: 900;
+
+      margin-bottom: 14px;
+    }
+
+    .intro-text {
+      color: rgba(255,255,255,0.82);
+
+      font-size: 16px;
+
+      line-height: 2;
+
+      margin-bottom: 30px;
+    }
+
+    .intro-features {
+      display: grid;
+
+      gap: 13px;
+    }
+
+    .intro-feature {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 12px 14px;
+
+      border-radius: 14px;
+
+      background: rgba(255,255,255,0.08);
+
+      border: 1px solid rgba(255,255,255,0.08);
+
+      font-size: 14px;
+
+      font-weight: 700;
+    }
+
+    .feature-icon {
+      width: 34px;
+      height: 34px;
+
+      flex-shrink: 0;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 10px;
+
+      background: rgba(255,255,255,0.14);
+
+      font-size: 17px;
+    }
+
+    /* =========================
+       نموذج التسجيل
+    ========================= */
+
+    .auth-form-section {
+      padding: 50px 48px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+    }
+
+    .auth-heading {
+      margin-bottom: 30px;
+    }
+
+    .auth-heading h1 {
+      color: #2b1d3d;
+
+      font-size: 31px;
+
+      font-weight: 900;
+
+      margin-bottom: 7px;
+    }
+
+    .auth-heading p {
+      color: #766b82;
+
+      font-size: 14px;
+
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 19px;
+    }
+
+    .form-label {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #2b1d3d;
+
+      font-size: 14px;
+
+      font-weight: 800;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .auth-input {
+      width: 100%;
+
+      min-height: 52px;
+
+      padding: 12px 16px;
+
+      border: 2px solid #eadff2;
+
+      border-radius: 14px;
+
+      background: #fff;
+
+      color: #2b1d3d;
+
+      font-family: inherit;
+
+      font-size: 15px;
+
+      font-weight: 600;
+
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+    }
+
+    .auth-input:focus {
+      outline: none;
+
+      border-color: #7b2ff7;
+
+      background: #fff;
+
+      box-shadow:
+        0 0 0 4px rgba(123,47,247,0.08);
+    }
+
+    .auth-input.input-error {
+      border-color: #ef233c;
+
+      box-shadow:
+        0 0 0 4px rgba(239,35,60,0.07);
+    }
+
+    .password-toggle {
+      position: absolute;
+
+      left: 12px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      border: none;
+
+      background: transparent;
+
+      color: #766b82;
+
+      cursor: pointer;
+
+      font-family: inherit;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      padding: 7px;
+
+      border-radius: 8px;
+    }
+
+    .password-toggle:hover {
+      background: #f5effa;
+
+      color: #7b2ff7;
+    }
+
+    /* =========================
+       قوة كلمة المرور
+    ========================= */
+
+    .password-strength {
+      margin-top: 9px;
+    }
+
+    .strength-track {
+      width: 100%;
+
+      height: 6px;
+
+      background: #eee7f2;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+    }
+
+    .strength-bar {
+      width: 0%;
+
+      height: 100%;
+
+      border-radius: 20px;
+
+      transition:
+        width 0.3s ease,
+        background 0.3s ease;
+    }
+
+    .strength-text {
+      display: block;
+
+      margin-top: 6px;
+
+      font-size: 12px;
+
+      color: #766b82;
+
+      font-weight: 700;
+    }
+
+    /* =========================
+       رسائل الحقول
+    ========================= */
+
+    .field-message {
+      display: none;
+
+      margin-top: 6px;
+
+      color: #ef233c;
+
+      font-size: 12px;
+
+      font-weight: 700;
+    }
+
+    .field-message.show {
+      display: block;
+    }
+
+    /* =========================
+       الشروط
+    ========================= */
+
+    .terms {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 9px;
+
+      margin: 5px 0 22px;
+
+      color: #766b82;
+
+      font-size: 12px;
+
+      line-height: 1.8;
+
+      font-weight: 600;
+    }
+
+    .terms input {
+      width: 17px;
+      height: 17px;
+
+      margin-top: 3px;
+
+      flex-shrink: 0;
+
+      accent-color: #7b2ff7;
+
+      cursor: pointer;
+    }
+
+    .terms a {
+      color: #7b2ff7;
+
+      font-weight: 800;
+
+      text-decoration: none;
+    }
+
+    /* =========================
+       زر التسجيل
+    ========================= */
+
+    .register-button {
+      width: 100%;
+
+      min-height: 54px;
+
+      border: none;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7b2ff7,
+          #f72585
+        );
+
+      color: white;
+
+      font-family: inherit;
+
+      font-size: 16px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 10px 25px rgba(123,47,247,0.22);
+
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        opacity 0.2s;
+    }
+
+    .register-button:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 14px 30px rgba(123,47,247,0.28);
+    }
+
+    .register-button:active {
+      transform: translateY(0);
+    }
+
+    .register-button:disabled {
+      cursor: not-allowed;
+
+      opacity: 0.7;
+
+      transform: none;
+
+      box-shadow: none;
+    }
+
+    .button-loading {
+      display: none;
+    }
+
+    .register-button.loading .button-text {
+      display: none;
+    }
+
+    .register-button.loading .button-loading {
+      display: inline;
+    }
+
+    /* =========================
+       رسالة السيرفر
+    ========================= */
+
+    .server-message {
+      display: none;
+
+      margin-top: 15px;
+
+      padding: 12px 14px;
+
+      border-radius: 12px;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      line-height: 1.7;
+    }
+
+    .server-message.error {
+      display: block;
+
+      background: #fff0f2;
+
+      color: #d90429;
+
+      border: 1px solid #ffd1d8;
+    }
+
+    .server-message.success {
+      display: block;
+
+      background: #edfff5;
+
+      color: #087f46;
+
+      border: 1px solid #c7f3dd;
+    }
+
+    /* =========================
+       تسجيل الدخول
+    ========================= */
+
+    .auth-footer {
+      text-align: center;
+
+      margin-top: 22px;
+
+      color: #766b82;
+
+      font-size: 13px;
+
+      font-weight: 600;
+    }
+
+    .auth-footer a {
+      color: #7b2ff7;
+
+      text-decoration: none;
+
+      font-weight: 900;
+    }
+
+    .auth-footer a:hover {
+      color: #f72585;
+    }
+
+    /* =========================
+       العودة للرئيسية
+    ========================= */
+
+    .back-home {
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 6px;
+
+      margin-top: 15px;
+
+      color: #766b82;
+
+      text-decoration: none;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      transition: 0.2s;
+    }
+
+    .back-home:hover {
+      color: #7b2ff7;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .auth-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .auth-intro {
+        display: none;
+      }
+
+      .auth-form-section {
+        padding: 40px 28px;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .auth-page {
+        padding: 25px 14px;
+      }
+
+      .auth-form-section {
+        padding: 30px 20px;
+      }
+
+      .auth-heading h1 {
+        font-size: 26px;
+      }
+
+      .auth-wrapper {
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <nav class="navbar">
+
+    <div class="nav-logo">
+      مِداد
+    </div>
+
+    <div class="nav-links">
+
+      <a href="index.html">
+        الرئيسية
+      </a>
+
+      <a href="user-login.html">
+        تسجيل الدخول
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- =========================
+       AUTH PAGE
+  ========================= -->
+
+  <main class="auth-page">
+
+    <div class="auth-wrapper">
+
+      <!-- الجانب التعريفي -->
+
+      <section class="auth-intro">
+
+        <div class="intro-content">
+
+          <div class="intro-logo">
+            مِداد
+          </div>
+
+          <h2 class="intro-title">
+            ابدأ رحلتك مع مِداد
+          </h2>
+
+          <p class="intro-text">
+            أنشئ حسابك الآن واستمتع بتجربة أفضل
+            في قراءة المقالات والمشاركة في المجتمع.
+          </p>
+
+          <div class="intro-features">
+
+            <div class="intro-feature">
+
+              <span class="feature-icon">
+                📚
+              </span>
+
+              <span>
+                الوصول إلى المقالات والمحتوى
+              </span>
+
+            </div>
+
+            <div class="intro-feature">
+
+              <span class="feature-icon">
+                💬
+              </span>
+
+              <span>
+                المشاركة والتعليق على المقالات
+              </span>
+
+            </div>
+
+            <div class="intro-feature">
+
+              <span class="feature-icon">
+                👥
+              </span>
+
+              <span>
+                المشاركة في مجتمع مِداد
+              </span>
+
+            </div>
+
+            <div class="intro-feature">
+
+              <span class="feature-icon">
+                🔐
+              </span>
+
+              <span>
+                حساب شخصي وتجربة أكثر تنظيمًا
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- نموذج التسجيل -->
+
+      <section class="auth-form-section">
+
+        <div class="auth-heading">
+
+          <h1>
+            إنشاء حساب جديد
+          </h1>
+
+          <p>
+            أنشئ حسابك في ثوانٍ وابدأ استخدام مِداد
+          </p>
+
+        </div>
+
+
+        <form id="register-form" novalidate>
+
+          <!-- الاسم -->
+
+          <div class="form-group">
+
+            <label
+              class="form-label"
+              for="name"
+            >
+              الاسم
+            </label>
+
+            <input
+              type="text"
+              id="name"
+              class="auth-input"
+              placeholder="اكتب اسمك"
+              autocomplete="name"
+              maxlength="80"
+              required
+            >
+
+            <div
+              id="name-message"
+              class="field-message"
+            ></div>
+
+          </div>
+
+
+          <!-- البريد -->
+
+          <div class="form-group">
+
+            <label
+              class="form-label"
+              for="email"
+            >
+              البريد الإلكتروني
+            </label>
+
+            <input
+              type="email"
+              id="email"
+              class="auth-input"
+              placeholder="example@email.com"
+              autocomplete="email"
+              maxlength="120"
+              required
+            >
+
+            <div
+              id="email-message"
+              class="field-message"
+            ></div>
+
+          </div>
+
+
+          <!-- كلمة المرور -->
+
+          <div class="form-group">
+
+            <label
+              class="form-label"
+              for="password"
+            >
+              كلمة المرور
+            </label>
+
+            <div class="input-wrapper">
+
+              <input
+                type="password"
+                id="password"
+                class="auth-input"
+                placeholder="أنشئ كلمة مرور قوية"
+                autocomplete="new-password"
+                maxlength="100"
+                required
+              >
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="toggle-password"
+              >
+                إظهار
+              </button>
+
+            </div>
+
+            <div class="password-strength">
+
+              <div class="strength-track">
+
+                <div
+                  id="strength-bar"
+                  class="strength-bar"
+                ></div>
+
+              </div>
+
+              <span
+                id="strength-text"
+                class="strength-text"
+              >
+                استخدم 8 أحرف على الأقل
+              </span>
+
+            </div>
+
+            <div
+              id="password-message"
+              class="field-message"
+            ></div>
+
+          </div>
+
+
+          <!-- تأكيد كلمة المرور -->
+
+          <div class="form-group">
+
+            <label
+              class="form-label"
+              for="confirm-password"
+            >
+              تأكيد كلمة المرور
+            </label>
+
+            <div class="input-wrapper">
+
+              <input
+                type="password"
+                id="confirm-password"
+                class="auth-input"
+                placeholder="أعد كتابة كلمة المرور"
+                autocomplete="new-password"
+                maxlength="100"
+                required
+              >
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="toggle-confirm-password"
+              >
+                إظهار
+              </button>
+
+            </div>
+
+            <div
+              id="confirm-message"
+              class="field-message"
+            ></div>
+
+          </div>
+
+
+          <!-- الشروط -->
+
+          <label class="terms">
+
+            <input
+              type="checkbox"
+              id="terms"
+            >
+
+            <span>
+              أوافق على استخدام مِداد وفقًا
+              <a href="#" onclick="return false;">
+                للشروط وسياسة الاستخدام
+              </a>.
+            </span>
+
+          </label>
+
+
+          <!-- زر -->
+
+          <button
+            type="submit"
+            id="register-button"
+            class="register-button"
+          >
+
+            <span class="button-text">
+              إنشاء الحساب
+            </span>
+
+            <span class="button-loading">
+              جارٍ إنشاء الحساب...
+            </span>
+
+          </button>
+
+
+          <!-- رسالة السيرفر -->
+
+          <div
+            id="server-message"
+            class="server-message"
+          ></div>
+
+        </form>
+
+
+        <!-- تسجيل الدخول -->
+
+        <div class="auth-footer">
+
+          لديك حساب بالفعل؟
+
+          <a href="user-login.html">
+            تسجيل الدخول
+          </a>
+
+        </div>
+
+
+        <a
+          href="index.html"
+          class="back-home"
+        >
+          ← العودة إلى الرئيسية
+        </a>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    const form =
+      document.getElementById('register-form');
+
+    const nameInput =
+      document.getElementById('name');
+
+    const emailInput =
+      document.getElementById('email');
+
+    const passwordInput =
+      document.getElementById('password');
+
+    const confirmPasswordInput =
+      document.getElementById('confirm-password');
+
+    const termsInput =
+      document.getElementById('terms');
+
+    const registerButton =
+      document.getElementById('register-button');
+
+    const serverMessage =
+      document.getElementById('server-message');
+
+    const strengthBar =
+      document.getElementById('strength-bar');
+
+    const strengthText =
+      document.getElementById('strength-text');
+
+
+    /* =========================
+       إظهار / إخفاء كلمة المرور
+    ========================= */
+
+    function setupPasswordToggle(buttonId, inputId) {
+
+      const button =
+        document.getElementById(buttonId);
+
+      const input =
+        document.getElementById(inputId);
+
+      button.addEventListener('click', function() {
+
+        if (input.type === 'password') {
+
+          input.type = 'text';
+
+          button.textContent = 'إخفاء';
+
+        } else {
+
+          input.type = 'password';
+
+          button.textContent = 'إظهار';
+
+        }
+
+      });
+
+    }
+
+    setupPasswordToggle(
+      'toggle-password',
+      'password'
+    );
+
+    setupPasswordToggle(
+      'toggle-confirm-password',
+      'confirm-password'
+    );
+
+
+    /* =========================
+       قوة كلمة المرور
+    ========================= */
+
+    function updatePasswordStrength(password) {
+
+      let score = 0;
+
+      if (password.length >= 8) {
+        score++;
+      }
+
+      if (/[a-z]/.test(password)) {
+        score++;
+      }
+
+      if (/[A-Z]/.test(password)) {
+        score++;
+      }
+
+      if (/[0-9]/.test(password)) {
+        score++;
+      }
+
+      if (/[^A-Za-z0-9]/.test(password)) {
+        score++;
+      }
+
+
+      const percentage =
+        (score / 5) * 100;
+
+      strengthBar.style.width =
+        percentage + '%';
+
+
+      if (!password) {
+
+        strengthBar.style.width = '0%';
+
+        strengthText.textContent =
+          'استخدم 8 أحرف على الأقل';
+
+        return;
+
+      }
+
+
+      if (score <= 2) {
+
+        strengthText.textContent =
+          'كلمة المرور ضعيفة';
+
+      } else if (score === 3) {
+
+        strengthText.textContent =
+          'كلمة المرور متوسطة';
+
+      } else if (score === 4) {
+
+        strengthText.textContent =
+          'كلمة المرور جيدة';
+
+      } else {
+
+        strengthText.textContent =
+          'كلمة المرور قوية';
+
+      }
+
+    }
+
+    passwordInput.addEventListener(
+      'input',
+      function() {
+
+        updatePasswordStrength(
+          passwordInput.value
+        );
+
+        clearFieldError(passwordInput);
+        clearFieldError(confirmPasswordInput);
+
+      }
+    );
+
+
+    /* =========================
+       أخطاء الحقول
+    ========================= */
+
+    function showFieldError(
+      input,
+      messageElementId,
+      message
+    ) {
+
+      input.classList.add('input-error');
+
+      const element =
+        document.getElementById(messageElementId);
+
+      element.textContent = message;
+
+      element.classList.add('show');
+
+    }
+
+
+    function clearFieldError(input) {
+
+      input.classList.remove('input-error');
+
+    }
+
+
+    function clearMessage(messageElementId) {
+
+      const element =
+        document.getElementById(messageElementId);
+
+      element.textContent = '';
+
+      element.classList.remove('show');
+
+    }
+
+
+    /* =========================
+       رسالة السيرفر
+    ========================= */
+
+    function showServerMessage(
+      message,
+      type = 'error'
+    ) {
+
+      serverMessage.textContent = message;
+
+      serverMessage.className =
+        'server-message ' + type;
+
+    }
+
+
+    function clearServerMessage() {
+
+      serverMessage.textContent = '';
+
+      serverMessage.className =
+        'server-message';
+
+    }
+
+
+    /* =========================
+       التحقق
+    ========================= */
+
+    function validateForm() {
+
+      let valid = true;
+
+
+      /* الاسم */
+
+      const name =
+        nameInput.value.trim();
+
+      if (!name) {
+
+        showFieldError(
+          nameInput,
+          'name-message',
+          'اكتب اسمك أولًا'
+        );
+
+        valid = false;
+
+      } else if (name.length < 2) {
+
+        showFieldError(
+          nameInput,
+          'name-message',
+          'الاسم يجب أن يكون حرفين على الأقل'
+        );
+
+        valid = false;
+
+      } else {
+
+        clearMessage('name-message');
+        clearFieldError(nameInput);
+
+      }
+
+
+      /* البريد */
+
+      const email =
+        emailInput.value.trim();
+
+      const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email) {
+
+        showFieldError(
+          emailInput,
+          'email-message',
+          'اكتب البريد الإلكتروني'
+        );
+
+        valid = false;
+
+      } else if (!emailPattern.test(email)) {
+
+        showFieldError(
+          emailInput,
+          'email-message',
+          'اكتب بريدًا إلكترونيًا صحيحًا'
+        );
+
+        valid = false;
+
+      } else {
+
+        clearMessage('email-message');
+        clearFieldError(emailInput);
+
+      }
+
+
+      /* كلمة المرور */
+
+      const password =
+        passwordInput.value;
+
+      if (!password) {
+
+        showFieldError(
+          passwordInput,
+          'password-message',
+          'اكتب كلمة المرور'
+        );
+
+        valid = false;
+
+      } else if (password.length < 8) {
+
+        showFieldError(
+          passwordInput,
+          'password-message',
+          'كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل'
+        );
+
+        valid = false;
+
+      } else {
+
+        clearMessage('password-message');
+        clearFieldError(passwordInput);
+
+      }
+
+
+      /* تأكيد كلمة المرور */
+
+      const confirmPassword =
+        confirmPasswordInput.value;
+
+      if (!confirmPassword) {
+
+        showFieldError(
+          confirmPasswordInput,
+          'confirm-message',
+          'أكد كلمة المرور'
+        );
+
+        valid = false;
+
+      } else if (
+        password !== confirmPassword
+      ) {
+
+        showFieldError(
+          confirmPasswordInput,
+          'confirm-message',
+          'كلمتا المرور غير متطابقتين'
+        );
+
+        valid = false;
+
+      } else {
+
+        clearMessage('confirm-message');
+        clearFieldError(confirmPasswordInput);
+
+      }
+
+
+      /* الشروط */
+
+      if (!termsInput.checked) {
+
+        showServerMessage(
+          'يجب الموافقة على الشروط قبل إنشاء الحساب.',
+          'error'
+        );
+
+        valid = false;
+
+      }
+
+
+      return valid;
+
+    }
+
+
+    /* =========================
+       إزالة الأخطاء أثناء الكتابة
+    ========================= */
+
+    nameInput.addEventListener(
+      'input',
+      function() {
+
+        clearFieldError(nameInput);
+
+        clearMessage('name-message');
+
+      }
+    );
+
+
+    emailInput.addEventListener(
+      'input',
+      function() {
+
+        clearFieldError(emailInput);
+
+        clearMessage('email-message');
+
+      }
+    );
+
+
+    confirmPasswordInput.addEventListener(
+      'input',
+      function() {
+
+        clearFieldError(confirmPasswordInput);
+
+        clearMessage('confirm-message');
+
+      }
+    );
+
+
+    /* =========================
+       إنشاء الحساب
+    ========================= */
+
+    form.addEventListener(
+      'submit',
+      async function(e) {
+
+        e.preventDefault();
+
+        clearServerMessage();
+
+
+        if (!validateForm()) {
+          return;
+        }
+
+
+        const name =
+          nameInput.value.trim();
+
+        const email =
+          emailInput.value.trim();
+
+        const password =
+          passwordInput.value;
+
+
+        registerButton.disabled = true;
+
+        registerButton.classList.add(
+          'loading'
+        );
+
+
+        try {
+
+          const response =
+            await fetch('/api/register', {
+
+              method: 'POST',
+
+              headers: {
+                'Content-Type':
+                  'application/json'
+              },
+
+              body: JSON.stringify({
+                name,
+                email,
+                password
+              })
+
+            });
+
+
+          let data;
+
+          try {
+
+            data =
+              await response.json();
+
+          } catch {
+
+            throw new Error(
+              'السيرفر لم يُرجع استجابة صحيحة'
+            );
+
+          }
+
+
+          if (
+            response.ok &&
+            data.success
+          ) {
+
+            showServerMessage(
+              'تم إنشاء الحساب بنجاح. سيتم تحويلك إلى صفحة تسجيل الدخول...',
+              'success'
+            );
+
+
+            form.reset();
+
+            updatePasswordStrength('');
+
+
+            setTimeout(
+              function() {
+
+                window.location.href =
+                  'user-login.html';
+
+              },
+              1200
+            );
+
+
+          } else {
+
+            showServerMessage(
+              data.error ||
+              'حدث خطأ أثناء إنشاء الحساب.',
+              'error'
+            );
+
+          }
+
+
+        } catch (error) {
+
+          console.error(
+            'Register Error:',
+            error
+          );
+
+
+          showServerMessage(
+            'تعذر الاتصال بالسيرفر. تأكد أن السيرفر يعمل ثم حاول مرة أخرى.',
+            'error'
+          );
+
+
+        } finally {
+
+          registerButton.disabled = false;
+
+          registerButton.classList.remove(
+            'loading'
+          );
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>

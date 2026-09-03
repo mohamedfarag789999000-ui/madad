@@ -1,0 +1,3327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>مِداد | منصة عربية للأخبار والمقالات</title>
+
+  <meta
+    name="description"
+    content="مِداد منصة عربية حديثة للأخبار والمقالات والمحتوى المتنوع."
+  >
+
+  <meta name="theme-color" content="#b5121b">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    /* =========================================================
+       مِداد - الصفحة الرئيسية
+       تصميم صحفي عربي احترافي
+       ========================================================= */
+
+    :root {
+      --primary: #b5121b;
+      --primary-dark: #8d0e15;
+      --primary-light: #e32632;
+
+      --bg: #f4f5f7;
+      --surface: #ffffff;
+      --surface-2: #f8f8f8;
+
+      --text: #171717;
+      --text-2: #555;
+      --muted: #858585;
+
+      --border: #e6e6e6;
+
+      --success: #159447;
+
+      --shadow-sm: 0 3px 15px rgba(0,0,0,.06);
+      --shadow-md: 0 10px 35px rgba(0,0,0,.09);
+      --shadow-lg: 0 20px 55px rgba(0,0,0,.14);
+
+      --radius: 14px;
+      --container: 1240px;
+
+      --transition: .25s ease;
+    }
+
+    /* ================= DARK MODE ================= */
+
+    html.dark {
+      --bg: #101114;
+      --surface: #18191d;
+      --surface-2: #202126;
+
+      --text: #f4f4f4;
+      --text-2: #c8c8c8;
+      --muted: #999;
+
+      --border: #303137;
+
+      --shadow-sm: 0 3px 15px rgba(0,0,0,.25);
+      --shadow-md: 0 10px 35px rgba(0,0,0,.35);
+      --shadow-lg: 0 20px 55px rgba(0,0,0,.45);
+    }
+
+    /* ================= RESET ================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      transition:
+        background .25s ease,
+        color .25s ease;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: auto;
+    }
+
+    /* ================= TOP BAR ================= */
+
+    .top-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .top-bar-inner {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .top-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .top-links a {
+      transition: var(--transition);
+    }
+
+    .top-links a:hover {
+      color: var(--primary);
+    }
+
+    .date-box {
+      white-space: nowrap;
+    }
+
+    /* ================= HEADER ================= */
+
+    .main-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-main {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: var(--text);
+    }
+
+    .logo-mark {
+      position: relative;
+      color: var(--primary);
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--primary);
+      left: 4px;
+      top: 7px;
+    }
+
+    .logo-subtitle {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 17px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 43px;
+      height: 43px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: var(--transition);
+    }
+
+    .icon-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .admin-btn {
+      height: 43px;
+      padding: 0 20px;
+      border-radius: 9px;
+      background: var(--text);
+      color: var(--surface);
+      font-size: 13px;
+      font-weight: 800;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .admin-btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* ================= NAVIGATION ================= */
+
+    .navigation {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .nav-inner {
+      min-height: 49px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link {
+      min-width: 75px;
+      height: 49px;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 15px;
+      left: 15px;
+      height: 3px;
+      background: transparent;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--primary);
+    }
+
+    .nav-link.active::after {
+      background: var(--primary);
+    }
+
+    /* ================= BREAKING NEWS ================= */
+
+    .breaking {
+      background: var(--surface);
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breaking-inner {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .breaking-label {
+      background: var(--primary);
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+      padding: 8px 18px;
+      white-space: nowrap;
+    }
+
+    .breaking-text {
+      flex: 1;
+      padding: 0 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ================= SEARCH ================= */
+
+    .search-panel {
+      display: none;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 15px 0;
+    }
+
+    .search-panel.show {
+      display: block;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .search-input {
+      flex: 1;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 0 17px;
+      outline: none;
+      background: var(--surface-2);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .search-submit {
+      width: 110px;
+      border: none;
+      border-radius: 9px;
+      background: var(--primary);
+      color: white;
+      font-weight: 800;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero-section {
+      padding: 25px 0 15px;
+    }
+
+    .hero {
+      position: relative;
+      height: 510px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #222;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .5s ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.92) 0%,
+          rgba(0,0,0,.55) 38%,
+          rgba(0,0,0,.05) 75%
+        );
+    }
+
+    .hero-content {
+      position: absolute;
+      right: 45px;
+      left: 45px;
+      bottom: 42px;
+      color: white;
+      max-width: 800px;
+    }
+
+    .hero-category {
+      display: inline-flex;
+      background: var(--primary);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(25px, 4vw, 44px);
+      line-height: 1.35;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .hero-meta {
+      color: rgba(255,255,255,.8);
+      font-size: 12px;
+    }
+
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(0,0,0,.3);
+      color: white;
+      font-size: 25px;
+      z-index: 5;
+      transition: var(--transition);
+    }
+
+    .hero-arrow:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .hero-prev {
+      right: 18px;
+    }
+
+    .hero-next {
+      left: 18px;
+    }
+
+    .hero-dots {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+    }
+
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,.45);
+      padding: 0;
+    }
+
+    .hero-dot.active {
+      width: 23px;
+      border-radius: 10px;
+      background: white;
+    }
+
+    /* ================= SECTION HEADER ================= */
+
+    .section {
+      margin-top: 25px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+    }
+
+    .section-header::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -2px;
+      width: 75px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .section-more {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* ================= MAIN GRID ================= */
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 25px;
+      align-items: start;
+    }
+
+    /* ================= ARTICLES ================= */
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .article-image-wrap {
+      height: 225px;
+      position: relative;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+
+    .article-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .article-card:hover .article-image {
+      transform: scale(1.05);
+    }
+
+    .article-category {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--primary);
+      color: white;
+      border-radius: 4px;
+      padding: 3px 9px;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .article-body {
+      padding: 15px 16px 18px;
+    }
+
+    .article-title {
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .article-title a:hover {
+      color: var(--primary);
+    }
+
+    .article-excerpt {
+      color: var(--text-2);
+      font-size: 12px;
+      line-height: 1.9;
+      margin-bottom: 10px;
+
+     display: -webkit-box;
+-webkit-line-clamp: 2;
+line-clamp: 2; /* أضف هذا السطر هنا */
+-webkit-box-orient: vertical;
+overflow: hidden;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* ================= SIDEBAR ================= */
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .side-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .side-title {
+      font-size: 18px;
+      font-weight: 900;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+    }
+
+    .side-title::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -2px;
+      width: 45px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .latest-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .latest-item {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .latest-item:last-child {
+      border-bottom: none;
+    }
+
+    .latest-image {
+      width: 86px;
+      height: 68px;
+      object-fit: cover;
+      border-radius: 7px;
+    }
+
+    .latest-title {
+      font-size: 12px;
+      line-height: 1.7;
+      font-weight: 800;
+    }
+
+    .latest-date {
+      font-size: 9px;
+      color: var(--primary);
+      margin-top: 3px;
+    }
+
+    /* ================= CATEGORIES ================= */
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .category-chip {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-2);
+      border-radius: 20px;
+      padding: 5px 11px;
+      font-size: 10px;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .category-chip:hover,
+    .category-chip.active {
+      color: white;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    /* ================= FEATURED ================= */
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .featured-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .featured-image {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .featured-content {
+      padding: 14px 15px 17px;
+    }
+
+    .featured-title {
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 900;
+    }
+
+    /* ================= EMPTY / LOADING ================= */
+
+    .loading,
+    .empty {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 45px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .spinner {
+      width: 35px;
+      height: 35px;
+      margin: 0 auto 12px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #151619;
+      color: #ddd;
+      margin-top: 55px;
+      padding-top: 45px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 35px;
+      padding-bottom: 35px;
+    }
+
+    .footer-logo {
+      color: white;
+      font-size: 30px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .footer-description {
+      color: #aaa;
+      font-size: 12px;
+      line-height: 2;
+      max-width: 400px;
+    }
+
+    .footer-title {
+      color: white;
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      font-size: 12px;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: white;
+      padding-right: 4px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #2b2c30;
+      padding: 17px 0;
+      color: #888;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    /* ================= BACK TO TOP ================= */
+
+    .back-top {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 20px;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(15px);
+      transition: var(--transition);
+      z-index: 900;
+    }
+
+    .back-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* ================= MOBILE MENU ================= */
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .mobile-menu.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-panel {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: min(340px, 85%);
+      background: var(--surface);
+      padding: 25px;
+      transform: translateX(100%);
+      transition: transform .3s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.show .mobile-panel {
+      transform: translateX(0);
+    }
+
+    .mobile-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+
+    .mobile-logo {
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .mobile-close {
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 25px;
+    }
+
+    .mobile-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-links a {
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .mobile-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ================= TOAST ================= */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 100px);
+      background: #171717;
+      color: white;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      z-index: 3000;
+      opacity: 0;
+      transition: .3s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 1000px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 750px) {
+
+      .container {
+        width: min(100% - 20px, var(--container));
+      }
+
+      .top-links {
+        display: none;
+      }
+
+      .top-bar-inner {
+        justify-content: center;
+      }
+
+      .header-main {
+        min-height: 72px;
+      }
+
+      .logo {
+        font-size: 30px;
+      }
+
+      .logo-subtitle,
+      .admin-btn {
+        display: none;
+      }
+
+      .navigation {
+        display: none;
+      }
+
+      .hero {
+        height: 430px;
+        border-radius: 11px;
+      }
+
+      .hero-content {
+        right: 22px;
+        left: 22px;
+        bottom: 38px;
+      }
+
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-arrow {
+        width: 38px;
+        height: 38px;
+      }
+
+      .articles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .breaking-label {
+        padding: 7px 11px;
+        font-size: 11px;
+      }
+
+      .breaking-text {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 450px) {
+
+      .header-actions {
+        gap: 5px;
+      }
+
+      .icon-btn {
+        width: 39px;
+        height: 39px;
+      }
+
+      .hero {
+        height: 390px;
+      }
+
+      .article-image-wrap {
+        height: 205px;
+      }
+
+      .section-title {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       TOP BAR
+       ========================================================= -->
+
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+
+      <div class="top-links">
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
+        <a href="forum.html">المنتدى</a>
+      </div>
+
+      <div class="date-box" id="currentDate">
+        جاري تحميل التاريخ...
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+
+  <header class="main-header">
+
+    <div class="container header-main">
+
+      <a href="index.html" class="logo" aria-label="مِداد">
+        <span class="logo-mark">مِداد</span>
+        <span class="logo-subtitle">منصة عربية</span>
+      </a>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-btn"
+          id="searchButton"
+          title="البحث"
+          aria-label="فتح البحث"
+        >
+          🔍
+        </button>
+
+        <button
+          class="icon-btn"
+          id="themeButton"
+          title="الوضع الليلي"
+          aria-label="تغيير المظهر"
+        >
+          🌙
+        </button>
+
+        <a href="login.html" class="admin-btn">
+          دخول الإدارة
+        </a>
+
+        <button
+          class="icon-btn"
+          id="menuButton"
+          title="القائمة"
+          aria-label="فتح القائمة"
+        >
+          ☰
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+      <div class="container nav-inner">
+
+        <a href="index.html" class="nav-link active">
+          الرئيسية
+        </a>
+
+        <a href="#" class="nav-link category-link" data-category="أخبار">
+          أخبار
+        </a>
+
+        <a href="#" class="nav-link category-link" data-category="سياسة">
+          سياسة
+        </a>
+
+        <a href="#" class="nav-link category-link" data-category="اقتصاد">
+          اقتصاد
+        </a>
+
+        <a href="#" class="nav-link category-link" data-category="رياضة">
+          رياضة
+        </a>
+
+        <a href="#" class="nav-link category-link" data-category="تكنولوجيا">
+          تكنولوجيا
+        </a>
+
+        <a href="#" class="nav-link category-link" data-category="تعليم">
+          تعليم
+        </a>
+
+        <a href="#" class="nav-link category-link" data-category="ثقافة">
+          ثقافة
+        </a>
+
+        <a href="#" class="nav-link category-link" data-category="منوعات">
+          منوعات
+        </a>
+
+      </div>
+    </nav>
+
+  </header>
+
+
+  <!-- =========================================================
+       SEARCH PANEL
+       ========================================================= -->
+
+  <section class="search-panel" id="searchPanel">
+
+    <div class="container">
+
+      <form class="search-box" id="searchForm">
+
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          placeholder="ابحث في مقالات مِداد..."
+          autocomplete="off"
+        >
+
+        <button class="search-submit" type="submit">
+          بحث
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       BREAKING NEWS
+       ========================================================= -->
+
+  <section class="breaking">
+
+    <div class="container">
+
+      <div class="breaking-inner">
+
+        <div class="breaking-label">
+          عاجل
+        </div>
+
+        <div class="breaking-text" id="breakingText">
+          أهلاً بك في مِداد — تابع أحدث المقالات والأخبار العربية
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       MAIN
+       ========================================================= -->
+
+  <main>
+
+    <div class="container">
+
+
+      <!-- =====================================================
+           HERO
+           ===================================================== -->
+
+      <section class="hero-section">
+
+        <div class="hero" id="hero">
+
+          <div class="loading" id="heroLoading">
+            <div class="spinner"></div>
+            جاري تحميل الأخبار...
+          </div>
+
+          <div id="heroSlides"></div>
+
+          <button
+            class="hero-arrow hero-prev"
+            id="heroPrev"
+            aria-label="السابق"
+          >
+            ❯
+          </button>
+
+          <button
+            class="hero-arrow hero-next"
+            id="heroNext"
+            aria-label="التالي"
+          >
+            ❮
+          </button>
+
+          <div class="hero-dots" id="heroDots"></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           MAIN CONTENT
+           ===================================================== -->
+
+      <div class="main-grid">
+
+
+        <!-- ===================================================
+             ARTICLES
+             =================================================== -->
+
+        <section class="section">
+
+          <div class="section-header">
+
+            <h2 class="section-title" id="articlesHeading">
+              أحدث المقالات
+            </h2>
+
+            <a href="#" id="showAllArticles" class="section-more">
+              عرض الكل ←
+            </a>
+
+          </div>
+
+
+          <div id="articlesContainer">
+
+            <div class="loading">
+
+              <div class="spinner"></div>
+
+              جاري تحميل المقالات...
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ===================================================
+             SIDEBAR
+             =================================================== -->
+
+        <aside class="sidebar">
+
+
+          <!-- أحدث المقالات -->
+
+          <div class="side-box">
+
+            <h3 class="side-title">
+              الأحدث
+            </h3>
+
+            <div class="latest-list" id="latestList">
+
+              <div class="loading">
+                جاري التحميل...
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- التصنيفات -->
+
+          <div class="side-box">
+
+            <h3 class="side-title">
+              الأقسام
+            </h3>
+
+            <div class="categories">
+
+              <button
+                class="category-chip active"
+                data-category="الكل"
+              >
+                الكل
+              </button>
+
+              <button
+                class="category-chip"
+                data-category="أخبار"
+              >
+                أخبار
+              </button>
+
+              <button
+                class="category-chip"
+                data-category="سياسة"
+              >
+                سياسة
+              </button>
+
+              <button
+                class="category-chip"
+                data-category="اقتصاد"
+              >
+                اقتصاد
+              </button>
+
+              <button
+                class="category-chip"
+                data-category="رياضة"
+              >
+                رياضة
+              </button>
+
+              <button
+                class="category-chip"
+                data-category="تكنولوجيا"
+              >
+                تكنولوجيا
+              </button>
+
+              <button
+                class="category-chip"
+                data-category="تعليم"
+              >
+                تعليم
+              </button>
+
+              <button
+                class="category-chip"
+                data-category="ثقافة"
+              >
+                ثقافة
+              </button>
+
+              <button
+                class="category-chip"
+                data-category="منوعات"
+              >
+                منوعات
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- عن مِداد -->
+
+          <div class="side-box">
+
+            <h3 class="side-title">
+              عن مِداد
+            </h3>
+
+            <p style="
+              color:var(--text-2);
+              font-size:12px;
+              line-height:2;
+            ">
+              مِداد منصة عربية تهدف إلى تقديم محتوى متنوع
+              بطريقة حديثة وسهلة القراءة، مع الاهتمام بجودة
+              المقالات وسرعة الوصول إلى المعلومة.
+            </p>
+
+            <a
+              href="about.html"
+              style="
+                display:block;
+                margin-top:12px;
+                color:var(--primary);
+                font-size:12px;
+                font-weight:900;
+              "
+            >
+              تعرف على مِداد ←
+            </a>
+
+          </div>
+
+
+        </aside>
+
+      </div>
+
+
+      <!-- =====================================================
+           FEATURED
+           ===================================================== -->
+
+      <section class="section">
+
+        <div class="section-header">
+
+          <h2 class="section-title">
+            مقالات مميزة
+          </h2>
+
+        </div>
+
+        <div id="featuredContainer">
+
+          <div class="loading">
+            جاري تحميل المقالات المميزة...
+          </div>
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+
+        <div>
+
+          <div class="footer-logo">
+            مِداد
+          </div>
+
+          <p class="footer-description">
+            منصة عربية للمقالات والأخبار والمحتوى المتنوع.
+            نسعى لتقديم تجربة قراءة حديثة وسريعة واحترافية
+            لجميع زوار المنصة.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="footer-title">
+            روابط مهمة
+          </h3>
+
+          <div class="footer-links">
+
+            <a href="index.html">
+              الرئيسية
+            </a>
+
+            <a href="about.html">
+              من نحن
+            </a>
+
+            <a href="contact.html">
+              تواصل معنا
+            </a>
+
+            <a href="forum.html">
+              المنتدى
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="footer-title">
+            الأقسام
+          </h3>
+
+          <div class="footer-links">
+
+            <a href="#" data-category="أخبار">
+              أخبار
+            </a>
+
+            <a href="#" data-category="تكنولوجيا">
+              تكنولوجيا
+            </a>
+
+            <a href="#" data-category="رياضة">
+              رياضة
+            </a>
+
+            <a href="#" data-category="تعليم">
+              تعليم
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="footer-title">
+            الحساب
+          </h3>
+
+          <div class="footer-links">
+
+            <a href="user-login.html">
+              تسجيل دخول المستخدم
+            </a>
+
+            <a href="register.html">
+              إنشاء حساب
+            </a>
+
+            <a href="login.html">
+              دخول الإدارة
+            </a>
+
+            <a href="add.html">
+              إضافة مقال
+            </a>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        © <span id="year"></span> مِداد — جميع الحقوق محفوظة
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       MOBILE MENU
+       ========================================================= -->
+
+  <div class="mobile-menu" id="mobileMenu">
+
+    <div class="mobile-panel">
+
+      <div class="mobile-head">
+
+        <div class="mobile-logo">
+          مِداد
+        </div>
+
+        <button
+          class="mobile-close"
+          id="mobileClose"
+          aria-label="إغلاق القائمة"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="mobile-links">
+
+        <a href="index.html">
+          الرئيسية
+        </a>
+
+        <a href="#" data-category="أخبار">
+          أخبار
+        </a>
+
+        <a href="#" data-category="سياسة">
+          سياسة
+        </a>
+
+        <a href="#" data-category="اقتصاد">
+          اقتصاد
+        </a>
+
+        <a href="#" data-category="رياضة">
+          رياضة
+        </a>
+
+        <a href="#" data-category="تكنولوجيا">
+          تكنولوجيا
+        </a>
+
+        <a href="#" data-category="تعليم">
+          تعليم
+        </a>
+
+        <a href="#" data-category="ثقافة">
+          ثقافة
+        </a>
+
+        <a href="about.html">
+          من نحن
+        </a>
+
+        <a href="contact.html">
+          تواصل معنا
+        </a>
+
+        <a href="forum.html">
+          المنتدى
+        </a>
+
+        <a href="login.html">
+          دخول الإدارة
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       BACK TO TOP
+       ========================================================= -->
+
+  <button
+    class="back-top"
+    id="backTop"
+    aria-label="العودة للأعلى"
+  >
+    ↑
+  </button>
+
+
+  <!-- =========================================================
+       TOAST
+       ========================================================= -->
+
+  <div class="toast" id="toast"></div>
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
+
+  <script>
+
+    /* =========================================================
+       VARIABLES
+       ========================================================= */
+
+    let allArticles = [];
+    let filteredArticles = [];
+
+    let heroIndex = 0;
+    let heroTimer = null;
+
+    const DEFAULT_IMAGE =
+      "data:image/svg+xml;charset=UTF-8," +
+      encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="900"
+             height="600"
+             viewBox="0 0 900 600">
+
+          <rect width="900" height="600" fill="#222"/>
+
+          <text
+            x="450"
+            y="300"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            fill="#fff"
+            font-family="Arial"
+            font-size="70"
+            font-weight="bold">
+            مِداد
+          </text>
+
+        </svg>
+      `);
+
+
+    /* =========================================================
+       DOM
+       ========================================================= */
+
+    const articlesContainer =
+      document.getElementById("articlesContainer");
+
+    const latestList =
+      document.getElementById("latestList");
+
+    const featuredContainer =
+      document.getElementById("featuredContainer");
+
+    const heroSlides =
+      document.getElementById("heroSlides");
+
+    const heroDots =
+      document.getElementById("heroDots");
+
+    const heroLoading =
+      document.getElementById("heroLoading");
+
+    const breakingText =
+      document.getElementById("breakingText");
+
+    const searchPanel =
+      document.getElementById("searchPanel");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const toast =
+      document.getElementById("toast");
+
+
+    /* =========================================================
+       UTILITIES
+       ========================================================= */
+
+    function escapeHtml(value) {
+
+      if (value === null || value === undefined) {
+        return "";
+      }
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+
+    function getImage(article) {
+
+      const image =
+        article.image_url ||
+        article.imageUrl ||
+        article.image ||
+        article.thumbnail ||
+        article.cover ||
+        "";
+
+      if (!image) {
+        return DEFAULT_IMAGE;
+      }
+
+      if (
+        image.startsWith("http://") ||
+        image.startsWith("https://") ||
+        image.startsWith("data:")
+      ) {
+        return image;
+      }
+
+      if (image.startsWith("/")) {
+        return image;
+      }
+
+      return "/" + image.replace(/^\/+/, "");
+    }
+
+
+    function getTitle(article) {
+
+      return (
+        article.title ||
+        article.name ||
+        "مقال بدون عنوان"
+      );
+
+    }
+
+
+    function getContent(article) {
+
+      return (
+        article.content ||
+        article.body ||
+        article.description ||
+        ""
+      );
+
+    }
+
+
+    function getCategory(article) {
+
+      return (
+        article.category ||
+        article.category_name ||
+        article.section ||
+        "عام"
+      );
+
+    }
+
+
+    function getDate(article) {
+
+      const date =
+        article.created_at ||
+        article.createdAt ||
+        article.date ||
+        "";
+
+      if (!date) {
+        return "";
+      }
+
+      try {
+
+        return new Date(date).toLocaleDateString(
+          "ar-EG",
+          {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+          }
+        );
+
+      } catch {
+        return date;
+      }
+
+    }
+
+
+    function getExcerpt(article) {
+
+      let text = getContent(article);
+
+      text = text
+        .replace(/<[^>]*>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (text.length > 150) {
+        text = text.substring(0, 150) + "...";
+      }
+
+      return text;
+    }
+
+
+    function getArticleId(article) {
+
+      return (
+        article.id ||
+        article.article_id ||
+        article.articleId
+      );
+
+    }
+
+
+    function articleUrl(article) {
+
+      const id = getArticleId(article);
+
+      if (!id) {
+        return "article.html";
+      }
+
+      return "article.html?id=" +
+        encodeURIComponent(id);
+
+    }
+
+
+    function showToast(message) {
+
+      toast.textContent = message;
+
+      toast.classList.add("show");
+
+      clearTimeout(showToast.timer);
+
+      showToast.timer =
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2500);
+
+    }
+
+
+    /* =========================================================
+       DATE
+       ========================================================= */
+
+    function updateDate() {
+
+      const now = new Date();
+
+      document.getElementById(
+        "currentDate"
+      ).textContent =
+        now.toLocaleDateString(
+          "ar-EG",
+          {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+          }
+        );
+
+      document.getElementById("year")
+        .textContent = now.getFullYear();
+
+    }
+
+    updateDate();
+
+
+    /* =========================================================
+       THEME
+       ========================================================= */
+
+    function loadTheme() {
+
+      const saved =
+        localStorage.getItem("medad-theme");
+
+      if (saved === "dark") {
+
+        document.documentElement
+          .classList.add("dark");
+
+        document.getElementById(
+          "themeButton"
+        ).textContent = "☀️";
+
+      } else {
+
+        document.documentElement
+          .classList.remove("dark");
+
+        document.getElementById(
+          "themeButton"
+        ).textContent = "🌙";
+
+      }
+
+    }
+
+
+    loadTheme();
+
+
+    document.getElementById(
+      "themeButton"
+    ).addEventListener(
+      "click",
+      function() {
+
+        const dark =
+          document.documentElement
+            .classList.toggle("dark");
+
+        localStorage.setItem(
+          "medad-theme",
+          dark ? "dark" : "light"
+        );
+
+        this.textContent =
+          dark ? "☀️" : "🌙";
+
+      }
+    );
+
+
+    /* =========================================================
+       SEARCH
+       ========================================================= */
+
+    document.getElementById(
+      "searchButton"
+    ).addEventListener(
+      "click",
+      function() {
+
+        searchPanel.classList.toggle("show");
+
+        if (searchPanel.classList.contains("show")) {
+          setTimeout(() => {
+            searchInput.focus();
+          }, 100);
+        }
+
+      }
+    );
+
+
+    document.getElementById(
+      "searchForm"
+    ).addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        const query =
+          searchInput.value
+            .trim()
+            .toLowerCase();
+
+        if (!query) {
+
+          filteredArticles =
+            [...allArticles];
+
+          renderArticles(
+            filteredArticles
+          );
+
+          document.getElementById(
+            "articlesHeading"
+          ).textContent =
+            "أحدث المقالات";
+
+          return;
+        }
+
+
+        filteredArticles =
+          allArticles.filter(article => {
+
+            const title =
+              getTitle(article).toLowerCase();
+
+            const content =
+              getContent(article).toLowerCase();
+
+            const category =
+              getCategory(article).toLowerCase();
+
+            return (
+              title.includes(query) ||
+              content.includes(query) ||
+              category.includes(query)
+            );
+
+          });
+
+
+        renderArticles(filteredArticles);
+
+
+        document.getElementById(
+          "articlesHeading"
+        ).textContent =
+          `نتائج البحث عن: ${searchInput.value}`;
+
+
+        document.getElementById(
+          "articlesHeading"
+        ).scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }
+    );
+
+
+    /* =========================================================
+       API NORMALIZER
+       ========================================================= */
+
+    function normalizeArticles(data) {
+
+      if (Array.isArray(data)) {
+        return data;
+      }
+
+      if (data && Array.isArray(data.articles)) {
+        return data.articles;
+      }
+
+      if (data && Array.isArray(data.data)) {
+        return data.data;
+      }
+
+      if (data && Array.isArray(data.results)) {
+        return data.results;
+      }
+
+      return [];
+
+    }
+
+
+    /* =========================================================
+       LOAD ARTICLES
+       ========================================================= */
+
+    async function loadArticles() {
+
+      try {
+
+        const response =
+          await fetch(
+            "/api/articles",
+            {
+              method: "GET",
+              headers: {
+                "Accept":
+                  "application/json"
+              },
+              cache: "no-store"
+            }
+          );
+
+
+        if (!response.ok) {
+          throw new Error(
+            "HTTP " + response.status
+          );
+        }
+
+
+        const data =
+          await response.json();
+
+
+        allArticles =
+          normalizeArticles(data);
+
+
+        allArticles.sort(
+          (a, b) => {
+
+            const dateA =
+              new Date(
+                a.created_at ||
+                a.createdAt ||
+                a.date ||
+                0
+              );
+
+            const dateB =
+              new Date(
+                b.created_at ||
+                b.createdAt ||
+                b.date ||
+                0
+              );
+
+            return dateB - dateA;
+
+          }
+        );
+
+
+        filteredArticles =
+          [...allArticles];
+
+
+        renderEverything();
+
+
+      } catch (error) {
+
+        console.error(
+          "Articles API Error:",
+          error
+        );
+
+
+        allArticles = [];
+
+        filteredArticles = [];
+
+
+        articlesContainer.innerHTML = `
+          <div class="empty">
+            تعذر تحميل المقالات حالياً.
+            <br>
+            تأكد أن <strong>server.js</strong>
+            يعمل وأن مسار
+            <strong>/api/articles</strong>
+            موجود.
+          </div>
+        `;
+
+
+        latestList.innerHTML = `
+          <div class="empty">
+            لا توجد بيانات حالياً.
+          </div>
+        `;
+
+
+        featuredContainer.innerHTML = `
+          <div class="empty">
+            لا توجد مقالات مميزة حالياً.
+          </div>
+        `;
+
+
+        heroLoading.style.display = "none";
+
+
+        renderHeroFallback();
+
+      }
+
+    }
+
+
+    /* =========================================================
+       RENDER EVERYTHING
+       ========================================================= */
+
+    function renderEverything() {
+
+      renderHero();
+
+      renderArticles(
+        filteredArticles
+      );
+
+      renderLatest();
+
+      renderFeatured();
+
+      updateBreaking();
+
+    }
+
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    function renderHero() {
+
+      heroSlides.innerHTML = "";
+      heroDots.innerHTML = "";
+
+      heroLoading.style.display = "none";
+
+
+      if (!allArticles.length) {
+
+        renderHeroFallback();
+
+        return;
+      }
+
+
+      const slides =
+        allArticles.slice(0, 5);
+
+
+      slides.forEach(
+        (article, index) => {
+
+          const slide =
+            document.createElement("article");
+
+          slide.className =
+            "hero-slide" +
+            (index === 0 ? " active" : "");
+
+
+          slide.innerHTML = `
+
+            <a href="${articleUrl(article)}">
+
+              <img
+                class="hero-image"
+                src="${escapeHtml(getImage(article))}"
+                alt="${escapeHtml(getTitle(article))}"
+                loading="${index === 0 ? "eager" : "lazy"}"
+                onerror="this.src='${DEFAULT_IMAGE}'"
+              >
+
+              <div class="hero-overlay"></div>
+
+              <div class="hero-content">
+
+                <span class="hero-category">
+                  ${escapeHtml(getCategory(article))}
+                </span>
+
+                <h1 class="hero-title">
+                  ${escapeHtml(getTitle(article))}
+                </h1>
+
+                <div class="hero-meta">
+                  ${escapeHtml(getDate(article))}
+                </div>
+
+              </div>
+
+            </a>
+          `;
+
+
+          heroSlides.appendChild(slide);
+
+
+          const dot =
+            document.createElement("button");
+
+          dot.className =
+            "hero-dot" +
+            (index === 0 ? " active" : "");
+
+          dot.setAttribute(
+            "aria-label",
+            "الخبر " + (index + 1)
+          );
+
+
+          dot.addEventListener(
+            "click",
+            () => {
+
+              heroIndex = index;
+
+              updateHero();
+
+              restartHero();
+
+            }
+          );
+
+
+          heroDots.appendChild(dot);
+
+        }
+      );
+
+
+      heroIndex = 0;
+
+      restartHero();
+
+    }
+
+
+    function renderHeroFallback() {
+
+      heroLoading.style.display = "none";
+
+      heroSlides.innerHTML = `
+
+        <article class="hero-slide active">
+
+          <img
+            class="hero-image"
+            src="${DEFAULT_IMAGE}"
+            alt="مِداد"
+          >
+
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+
+            <span class="hero-category">
+              مِداد
+            </span>
+
+            <h1 class="hero-title">
+              أهلاً بك في منصة مِداد
+            </h1>
+
+            <div class="hero-meta">
+              منصة عربية للمقالات والأخبار
+            </div>
+
+          </div>
+
+        </article>
+
+      `;
+
+      heroDots.innerHTML = "";
+
+    }
+
+
+    function updateHero() {
+
+      const slides =
+        heroSlides.querySelectorAll(
+          ".hero-slide"
+        );
+
+      const dots =
+        heroDots.querySelectorAll(
+          ".hero-dot"
+        );
+
+
+      slides.forEach(
+        (slide, index) => {
+
+          slide.classList.toggle(
+            "active",
+            index === heroIndex
+          );
+
+        }
+      );
+
+
+      dots.forEach(
+        (dot, index) => {
+
+          dot.classList.toggle(
+            "active",
+            index === heroIndex
+          );
+
+        }
+      );
+
+    }
+
+
+    function nextHero() {
+
+      const total =
+        heroSlides.querySelectorAll(
+          ".hero-slide"
+        ).length;
+
+      if (total <= 1) {
+        return;
+      }
+
+      heroIndex =
+        (heroIndex + 1) % total;
+
+      updateHero();
+
+    }
+
+
+    function previousHero() {
+
+      const total =
+        heroSlides.querySelectorAll(
+          ".hero-slide"
+        ).length;
+
+      if (total <= 1) {
+        return;
+      }
+
+      heroIndex =
+        (heroIndex - 1 + total) % total;
+
+      updateHero();
+
+    }
+
+
+    function restartHero() {
+
+      clearInterval(heroTimer);
+
+      heroTimer =
+        setInterval(
+          nextHero,
+          6000
+        );
+
+    }
+
+
+    document.getElementById(
+      "heroNext"
+    ).addEventListener(
+      "click",
+      function() {
+
+        nextHero();
+
+        restartHero();
+
+      }
+    );
+
+
+    document.getElementById(
+      "heroPrev"
+    ).addEventListener(
+      "click",
+      function() {
+
+        previousHero();
+
+        restartHero();
+
+      }
+    );
+
+
+    /* =========================================================
+       ARTICLES
+       ========================================================= */
+
+    function renderArticles(articles) {
+
+      if (!articles.length) {
+
+        articlesContainer.innerHTML = `
+          <div class="empty">
+            لا توجد مقالات مطابقة لبحثك.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      const visible =
+        articles.slice(0, 12);
+
+
+      articlesContainer.innerHTML = `
+
+        <div class="articles-grid">
+
+          ${visible.map(article => `
+
+            <article class="article-card">
+
+              <a href="${articleUrl(article)}">
+
+                <div class="article-image-wrap">
+
+                  <img
+                    class="article-image"
+                    src="${escapeHtml(getImage(article))}"
+                    alt="${escapeHtml(getTitle(article))}"
+                    loading="lazy"
+                    onerror="this.src='${DEFAULT_IMAGE}'"
+                  >
+
+                  <span class="article-category">
+                    ${escapeHtml(getCategory(article))}
+                  </span>
+
+                </div>
+
+                <div class="article-body">
+
+                  <h3 class="article-title">
+                    ${escapeHtml(getTitle(article))}
+                  </h3>
+
+                  <p class="article-excerpt">
+                    ${escapeHtml(getExcerpt(article))}
+                  </p>
+
+                  <div class="article-meta">
+
+                    <span>
+                      ${escapeHtml(getDate(article))}
+                    </span>
+
+                    <span>
+                      قراءة المقال ←
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </a>
+
+            </article>
+
+          `).join("")}
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================================================
+       LATEST
+       ========================================================= */
+
+    function renderLatest() {
+
+      const articles =
+        allArticles.slice(0, 6);
+
+
+      if (!articles.length) {
+
+        latestList.innerHTML = `
+          <div class="empty">
+            لا توجد مقالات.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      latestList.innerHTML =
+        articles.map(article => `
+
+          <a
+            href="${articleUrl(article)}"
+            class="latest-item"
+          >
+
+            <img
+              class="latest-image"
+              src="${escapeHtml(getImage(article))}"
+              alt="${escapeHtml(getTitle(article))}"
+              loading="lazy"
+              onerror="this.src='${DEFAULT_IMAGE}'"
+            >
+
+            <div>
+
+              <div class="latest-title">
+                ${escapeHtml(getTitle(article))}
+              </div>
+
+              <div class="latest-date">
+                ${escapeHtml(getDate(article))}
+              </div>
+
+            </div>
+
+          </a>
+
+        `).join("");
+
+    }
+
+
+    /* =========================================================
+       FEATURED
+       ========================================================= */
+
+    function renderFeatured() {
+
+      const articles =
+        allArticles.slice(0, 3);
+
+
+      if (!articles.length) {
+
+        featuredContainer.innerHTML = `
+          <div class="empty">
+            لا توجد مقالات مميزة حالياً.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      featuredContainer.innerHTML = `
+
+        <div class="featured-grid">
+
+          ${articles.map(article => `
+
+            <article class="featured-card">
+
+              <a href="${articleUrl(article)}">
+
+                <img
+                  class="featured-image"
+                  src="${escapeHtml(getImage(article))}"
+                  alt="${escapeHtml(getTitle(article))}"
+                  loading="lazy"
+                  onerror="this.src='${DEFAULT_IMAGE}'"
+                >
+
+                <div class="featured-content">
+
+                  <span
+                    style="
+                      display:block;
+                      color:var(--primary);
+                      font-size:10px;
+                      font-weight:900;
+                      margin-bottom:6px;
+                    "
+                  >
+                    ${escapeHtml(getCategory(article))}
+                  </span>
+
+                  <h3 class="featured-title">
+                    ${escapeHtml(getTitle(article))}
+                  </h3>
+
+                </div>
+
+              </a>
+
+            </article>
+
+          `).join("")}
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================================================
+       BREAKING
+       ========================================================= */
+
+    function updateBreaking() {
+
+      if (!allArticles.length) {
+        return;
+      }
+
+      const article =
+        allArticles[0];
+
+      breakingText.textContent =
+        getTitle(article);
+
+    }
+
+
+    /* =========================================================
+       CATEGORY FILTER
+       ========================================================= */
+
+    function filterCategory(category) {
+
+      if (!category || category === "الكل") {
+
+        filteredArticles =
+          [...allArticles];
+
+        document.getElementById(
+          "articlesHeading"
+        ).textContent =
+          "أحدث المقالات";
+
+      } else {
+
+        filteredArticles =
+          allArticles.filter(
+            article =>
+              getCategory(article)
+                .trim()
+                .toLowerCase() ===
+              category.trim().toLowerCase()
+          );
+
+
+        document.getElementById(
+          "articlesHeading"
+        ).textContent =
+          "أحدث مقالات " + category;
+
+      }
+
+
+      renderArticles(
+        filteredArticles
+      );
+
+
+      document.getElementById(
+        "articlesHeading"
+      ).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+
+    document.addEventListener(
+      "click",
+      function(event) {
+
+        const element =
+          event.target.closest(
+            "[data-category]"
+          );
+
+
+        if (!element) {
+          return;
+        }
+
+
+        const category =
+          element.dataset.category;
+
+
+        if (!category) {
+          return;
+        }
+
+
+        event.preventDefault();
+
+
+        filterCategory(category);
+
+
+        document
+          .querySelectorAll(
+            ".category-chip"
+          )
+          .forEach(button => {
+
+            button.classList.toggle(
+              "active",
+              button.dataset.category ===
+              category
+            );
+
+          });
+
+
+        closeMobileMenu();
+
+      }
+    );
+
+
+    /* =========================================================
+       SHOW ALL
+       ========================================================= */
+
+    document.getElementById(
+      "showAllArticles"
+    ).addEventListener(
+      "click",
+      function(event) {
+
+        event.preventDefault();
+
+        filteredArticles =
+          [...allArticles];
+
+        document.getElementById(
+          "articlesHeading"
+        ).textContent =
+          "أحدث المقالات";
+
+        renderArticles(
+          filteredArticles
+        );
+
+        document.getElementById(
+          "articlesHeading"
+        ).scrollIntoView({
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+
+    /* =========================================================
+       MOBILE MENU
+       ========================================================= */
+
+    const mobileMenu =
+      document.getElementById(
+        "mobileMenu"
+      );
+
+
+    function openMobileMenu() {
+
+      mobileMenu.classList.add("show");
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+
+    function closeMobileMenu() {
+
+      mobileMenu.classList.remove("show");
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    document.getElementById(
+      "menuButton"
+    ).addEventListener(
+      "click",
+      openMobileMenu
+    );
+
+
+    document.getElementById(
+      "mobileClose"
+    ).addEventListener(
+      "click",
+      closeMobileMenu
+    );
+
+
+    mobileMenu.addEventListener(
+      "click",
+      function(event) {
+
+        if (event.target === mobileMenu) {
+          closeMobileMenu();
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       BACK TO TOP
+       ========================================================= */
+
+    const backTop =
+      document.getElementById(
+        "backTop"
+      );
+
+
+    window.addEventListener(
+      "scroll",
+      function() {
+
+        if (window.scrollY > 450) {
+
+          backTop.classList.add("show");
+
+        } else {
+
+          backTop.classList.remove("show");
+
+        }
+
+      },
+      { passive: true }
+    );
+
+
+    backTop.addEventListener(
+      "click",
+      function() {
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+
+    /* =========================================================
+       KEYBOARD SHORTCUT
+       ========================================================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        /* Ctrl + K لفتح البحث */
+
+        if (
+          (event.ctrlKey || event.metaKey) &&
+          event.key.toLowerCase() === "k"
+        ) {
+
+          event.preventDefault();
+
+          searchPanel.classList.add(
+            "show"
+          );
+
+          searchInput.focus();
+
+        }
+
+
+        /* Escape */
+
+        if (event.key === "Escape") {
+
+          searchPanel.classList.remove(
+            "show"
+          );
+
+          closeMobileMenu();
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       TOUCH SWIPE FOR HERO
+       ========================================================= */
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+
+    document.getElementById(
+      "hero"
+    ).addEventListener(
+      "touchstart",
+      function(event) {
+
+        touchStartX =
+          event.changedTouches[0].screenX;
+
+      },
+      { passive: true }
+    );
+
+
+    document.getElementById(
+      "hero"
+    ).addEventListener(
+      "touchend",
+      function(event) {
+
+        touchEndX =
+          event.changedTouches[0].screenX;
+
+
+        const distance =
+          touchEndX - touchStartX;
+
+
+        if (Math.abs(distance) < 50) {
+          return;
+        }
+
+
+        if (distance > 0) {
+
+          previousHero();
+
+        } else {
+
+          nextHero();
+
+        }
+
+
+        restartHero();
+
+      },
+      { passive: true }
+    );
+
+
+    /* =========================================================
+       INITIAL LOAD
+       ========================================================= */
+
+    loadArticles();
+
+
+    /* =========================================================
+       PERIODIC REFRESH
+       تحديث المقالات بدون إعادة تحميل الصفحة
+       ========================================================= */
+
+    setInterval(
+      async function() {
+
+        try {
+
+          const response =
+            await fetch(
+              "/api/articles",
+              {
+                headers: {
+                  "Accept":
+                    "application/json"
+                },
+                cache: "no-store"
+              }
+            );
+
+
+          if (!response.ok) {
+            return;
+          }
+
+
+          const data =
+            await response.json();
+
+
+          const freshArticles =
+            normalizeArticles(data);
+
+
+          if (
+            JSON.stringify(
+              freshArticles
+            ) !==
+            JSON.stringify(
+              allArticles
+            )
+          ) {
+
+            allArticles =
+              freshArticles;
+
+
+            allArticles.sort(
+              (a, b) => {
+
+                const dateA =
+                  new Date(
+                    a.created_at ||
+                    a.createdAt ||
+                    a.date ||
+                    0
+                  );
+
+                const dateB =
+                  new Date(
+                    b.created_at ||
+                    b.createdAt ||
+                    b.date ||
+                    0
+                  );
+
+                return dateB - dateA;
+
+              }
+            );
+
+
+            filteredArticles =
+              [...allArticles];
+
+
+            renderEverything();
+
+          }
+
+        } catch (error) {
+
+          console.warn(
+            "Auto refresh failed:",
+            error
+          );
+
+        }
+
+      },
+      60000
+    );
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>لوحة الإدارة | مِداد</title>
+
+  <meta name="description"
+        content="لوحة التحكم والإدارة في منصة مِداد">
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="style.css">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple: #7b2ff7;
+      --pink: #f72585;
+      --dark: #21152f;
+      --text: #291f35;
+      --muted: #766b82;
+      --border: #eee7f5;
+      --bg: #f8f5fc;
+      --white: #ffffff;
+      --green: #18a558;
+      --red: #d92d4f;
+      --orange: #f08a24;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at 0% 0%,
+          rgba(123,47,247,.08),
+          transparent 25%
+        ),
+        var(--bg);
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    /* =========================
+       الصفحة
+    ========================== */
+
+    .admin-page {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* =========================
+       SIDEBAR
+    ========================== */
+
+    .sidebar {
+      width: 270px;
+      min-height: 100vh;
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 50;
+      padding: 25px 18px;
+      color: white;
+      background:
+        linear-gradient(
+          180deg,
+          #21152f,
+          #352047,
+          #4c246b
+        );
+      box-shadow:
+        -10px 0 35px rgba(33,21,47,.12);
+    }
+
+    .sidebar-logo {
+      padding: 15px 14px 25px;
+      border-bottom:
+        1px solid rgba(255,255,255,.10);
+      margin-bottom: 20px;
+    }
+
+    .logo-title {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 900;
+    }
+
+    .logo-subtitle {
+      margin: 2px 0 0;
+      font-size: 12px;
+      opacity: .7;
+    }
+
+    .nav-title {
+      font-size: 11px;
+      opacity: .5;
+      margin: 15px 12px 8px;
+      font-weight: 800;
+    }
+
+    .nav-link {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 0;
+      padding: 13px 14px;
+      margin-bottom: 6px;
+      border-radius: 13px;
+      color: rgba(255,255,255,.78);
+      background: transparent;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: right;
+      transition: .2s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(123,47,247,.8),
+          rgba(247,37,133,.65)
+        );
+    }
+
+    .nav-icon {
+      width: 28px;
+      text-align: center;
+      font-size: 19px;
+    }
+
+    .sidebar-bottom {
+      position: absolute;
+      bottom: 22px;
+      left: 18px;
+      right: 18px;
+    }
+
+    .logout-sidebar {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 12px;
+      border-radius: 13px;
+      color: #ffdce5;
+      background: rgba(255,255,255,.06);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* =========================
+       MAIN
+    ========================== */
+
+    .main {
+      width: calc(100% - 270px);
+      margin-right: 270px;
+      padding: 30px;
+    }
+
+    /* =========================
+       TOPBAR
+    ========================== */
+
+    .topbar {
+      min-height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 22px;
+      margin-bottom: 25px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow:
+        0 10px 35px rgba(43,29,61,.05);
+    }
+
+    .topbar-title h1 {
+      margin: 0;
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .topbar-title p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .admin-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 30px;
+      color: #14763e;
+      background: #ebfaf1;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* =========================
+       DASHBOARD
+    ========================== */
+
+    .dashboard-section {
+      display: none;
+    }
+
+    .dashboard-section.active {
+      display: block;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      border-radius: 22px;
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 12px 35px rgba(43,29,61,.06);
+    }
+
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      left: -35px;
+      bottom: -35px;
+      background:
+        rgba(123,47,247,.06);
+    }
+
+    .stat-icon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 13px;
+      border-radius: 13px;
+      font-size: 22px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(123,47,247,.12),
+          rgba(247,37,133,.10)
+        );
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .stat-value {
+      margin-top: 3px;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    /* =========================
+       QUICK ACTIONS
+    ========================== */
+
+    .panel {
+      padding: 25px;
+      margin-bottom: 22px;
+      border: 1px solid var(--border);
+      border-radius: 23px;
+      background: white;
+      box-shadow:
+        0 12px 35px rgba(43,29,61,.05);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .panel-description {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns:
+        repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .quick-action {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 17px;
+      border-radius: 16px;
+      color: var(--text);
+      background: #faf8fc;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: .2s;
+    }
+
+    .quick-action:hover {
+      transform: translateY(-2px);
+      border-color: #d9c5f2;
+      box-shadow:
+        0 8px 25px rgba(123,47,247,.08);
+    }
+
+    .quick-icon {
+      width: 45px;
+      height: 45px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--pink)
+        );
+      font-size: 21px;
+    }
+
+    .quick-action strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .quick-action span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* =========================
+       ARTICLES
+    ========================== */
+
+    .article-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .article-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      border-radius: 15px;
+      background: #faf9fc;
+      border: 1px solid var(--border);
+    }
+
+    .article-thumb {
+      width: 75px;
+      height: 65px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      background:
+        linear-gradient(
+          135deg,
+          #eee6f7,
+          #fbe6ef
+        );
+    }
+
+    .article-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .article-thumb.no-image {
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+    }
+
+    .article-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .article-info h3 {
+      margin: 0 0 4px;
+      font-size: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .article-actions {
+      display: flex;
+      gap: 7px;
+    }
+
+    .small-btn {
+      border: 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .view-btn {
+      color: #553080;
+      background: #f0e8fa;
+    }
+
+    .delete-btn {
+      color: var(--red);
+      background: #fff0f3;
+    }
+
+    /* =========================
+       USERS
+    ========================== */
+
+    .user-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .user-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    .user-table th,
+    .user-table td {
+      padding: 14px 12px;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .user-table th {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .user-table td {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* =========================
+       LOADING
+    ========================== */
+
+    .loading {
+      padding: 35px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .empty {
+      padding: 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================
+       TOAST
+    ========================== */
+
+    #toast {
+      position: fixed;
+      left: 25px;
+      bottom: 25px;
+      z-index: 100;
+      max-width: 350px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      color: white;
+      background: #21152f;
+      box-shadow:
+        0 15px 40px rgba(0,0,0,.2);
+      font-size: 13px;
+      font-weight: 700;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: .3s;
+    }
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 1000px) {
+
+      .stats-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .quick-actions {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+    @media (max-width: 700px) {
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        position: relative;
+        padding: 15px;
+      }
+
+      .sidebar-logo {
+        margin-bottom: 10px;
+        padding-bottom: 15px;
+      }
+
+      .nav-title {
+        display: none;
+      }
+
+      .nav-link {
+        display: inline-flex;
+        width: auto;
+        margin: 3px;
+      }
+
+      .nav-link span:last-child {
+        display: none;
+      }
+
+      .sidebar-bottom {
+        position: static;
+        margin-top: 10px;
+      }
+
+      .logout-sidebar {
+        width: auto;
+        padding: 9px 15px;
+      }
+
+      .admin-page {
+        display: block;
+      }
+
+      .main {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .stats-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 15px;
+      }
+
+      .stat-value {
+        font-size: 23px;
+      }
+
+      .quick-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .article-row {
+        align-items: flex-start;
+      }
+
+      .article-actions {
+        flex-direction: column;
+      }
+
+      .article-thumb {
+        width: 60px;
+        height: 55px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<div class="admin-page">
+
+
+  <!-- =====================================
+       SIDEBAR
+  ====================================== -->
+
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+
+      <h1 class="logo-title">
+        مِداد
+      </h1>
+
+      <p class="logo-subtitle">
+        لوحة الإدارة والتحكم
+      </p>
+
+    </div>
+
+
+    <div class="nav-title">
+      الرئيسية
+    </div>
+
+
+    <button
+      class="nav-link active"
+      data-section="dashboard"
+    >
+
+      <span class="nav-icon">📊</span>
+
+      <span>
+        لوحة التحكم
+      </span>
+
+    </button>
+
+
+    <div class="nav-title">
+      إدارة المحتوى
+    </div>
+
+
+    <button
+      class="nav-link"
+      data-section="articles"
+    >
+
+      <span class="nav-icon">📰</span>
+
+      <span>
+        المقالات
+      </span>
+
+    </button>
+
+
+    <a
+      href="add.html"
+      class="nav-link"
+    >
+
+      <span class="nav-icon">✍️</span>
+
+      <span>
+        إضافة مقال
+      </span>
+
+    </a>
+
+
+    <div class="nav-title">
+      المستخدمون
+    </div>
+
+
+    <button
+      class="nav-link"
+      data-section="users"
+    >
+
+      <span class="nav-icon">👥</span>
+
+      <span>
+        المستخدمون
+      </span>
+
+    </button>
+
+
+    <div class="nav-title">
+      الموقع
+    </div>
+
+
+    <a
+      href="index.html"
+      class="nav-link"
+    >
+
+      <span class="nav-icon">🌐</span>
+
+      <span>
+        فتح الموقع
+      </span>
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+      <button
+        id="logout-btn"
+        class="logout-sidebar"
+      >
+        🔒 تسجيل خروج الإدارة
+      </button>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- =====================================
+       MAIN
+  ====================================== -->
+
+  <main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+      <div class="topbar-title">
+
+        <h1 id="page-title">
+          لوحة التحكم
+        </h1>
+
+        <p>
+          إدارة منصة مِداد من مكان واحد
+        </p>
+
+      </div>
+
+
+      <div class="admin-status">
+
+        <span class="status-dot"></span>
+
+        الإدارة متصلة
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         DASHBOARD
+    ====================================== -->
+
+    <section
+      id="dashboard"
+      class="dashboard-section active"
+    >
+
+
+      <div class="stats-grid">
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            📰
+          </div>
+
+          <div class="stat-label">
+            المقالات
+          </div>
+
+          <div
+            class="stat-value"
+            id="articles-count"
+          >
+            —
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            👥
+          </div>
+
+          <div class="stat-label">
+            المستخدمون
+          </div>
+
+          <div
+            class="stat-value"
+            id="users-count"
+          >
+            —
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            👁️
+          </div>
+
+          <div class="stat-label">
+            المشاهدات
+          </div>
+
+          <div
+            class="stat-value"
+            id="views-count"
+          >
+            —
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            💬
+          </div>
+
+          <div class="stat-label">
+            التعليقات
+          </div>
+
+          <div
+            class="stat-value"
+            id="comments-count"
+          >
+            —
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- QUICK ACTIONS -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <h2 class="panel-title">
+              ⚡ إجراءات سريعة
+            </h2>
+
+            <p class="panel-description">
+              الوصول السريع إلى أهم أدوات الإدارة
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="quick-actions">
+
+
+          <a
+            href="add.html"
+            class="quick-action"
+          >
+
+            <div class="quick-icon">
+              ✍️
+            </div>
+
+            <div>
+
+              <strong>
+                إضافة مقال
+              </strong>
+
+              <span>
+                نشر محتوى جديد
+              </span>
+
+            </div>
+
+          </a>
+
+
+          <button
+            class="quick-action"
+            data-open-section="articles"
+          >
+
+            <div class="quick-icon">
+              📰
+            </div>
+
+            <div>
+
+              <strong>
+                إدارة المقالات
+              </strong>
+
+              <span>
+                عرض وحذف المقالات
+              </span>
+
+            </div>
+
+          </button>
+
+
+          <button
+            class="quick-action"
+            data-open-section="users"
+          >
+
+            <div class="quick-icon">
+              👥
+            </div>
+
+            <div>
+
+              <strong>
+                المستخدمون
+              </strong>
+
+              <span>
+                عرض الحسابات المسجلة
+              </span>
+
+            </div>
+
+          </button>
+
+
+        </div>
+
+      </div>
+
+
+
+      <!-- LATEST ARTICLES -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <h2 class="panel-title">
+              📰 أحدث المقالات
+            </h2>
+
+            <p class="panel-description">
+              آخر المحتوى المنشور على مِداد
+            </p>
+
+          </div>
+
+
+          <button
+            class="small-btn view-btn"
+            data-open-section="articles"
+          >
+            عرض الكل
+          </button>
+
+        </div>
+
+
+        <div
+          id="latest-articles"
+          class="article-list"
+        >
+
+          <div class="loading">
+            جاري تحميل المقالات...
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         ARTICLES SECTION
+    ====================================== -->
+
+    <section
+      id="articles"
+      class="dashboard-section"
+    >
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <h2 class="panel-title">
+              📰 إدارة المقالات
+            </h2>
+
+            <p class="panel-description">
+              جميع المقالات الموجودة في قاعدة البيانات
+            </p>
+
+          </div>
+
+
+          <a
+            href="add.html"
+            class="small-btn view-btn"
+            style="text-decoration:none;"
+          >
+            + إضافة مقال
+          </a>
+
+        </div>
+
+
+        <div
+          id="all-articles"
+          class="article-list"
+        >
+
+          <div class="loading">
+            جاري تحميل المقالات...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         USERS SECTION
+    ====================================== -->
+
+    <section
+      id="users"
+      class="dashboard-section"
+    >
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <h2 class="panel-title">
+              👥 المستخدمون
+            </h2>
+
+            <p class="panel-description">
+              الحسابات المسجلة في منصة مِداد
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="users-container"
+          class="user-table-wrapper"
+        >
+
+          <div class="loading">
+            جاري تحميل المستخدمين...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+
+<script>
+
+/* =====================================================
+   عناصر الصفحة
+===================================================== */
+
+const sections =
+  document.querySelectorAll(
+    '.dashboard-section'
+  );
+
+const navLinks =
+  document.querySelectorAll(
+    '.nav-link[data-section]'
+  );
+
+const pageTitle =
+  document.getElementById(
+    'page-title'
+  );
+
+
+/* =====================================================
+   Toast
+===================================================== */
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById('toast');
+
+  toast.textContent =
+    message;
+
+  toast.classList.add('show');
+
+  setTimeout(() => {
+
+    toast.classList.remove('show');
+
+  }, 3000);
+
+}
+
+
+/* =====================================================
+   API helper
+===================================================== */
+
+async function api(url, options = {}) {
+
+  const response =
+    await fetch(
+      url,
+      {
+        credentials: 'include',
+        ...options
+      }
+    );
+
+
+  let data = {};
+
+  try {
+
+    data =
+      await response.json();
+
+  } catch {
+
+    data = {};
+
+  }
+
+
+  if (
+    response.status === 401
+  ) {
+
+    window.location.href =
+      'login.html';
+
+    throw new Error(
+      'غير مصرح'
+    );
+
+  }
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      data.error ||
+      'حدث خطأ'
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+/* =====================================================
+   التحقق من الإدارة
+===================================================== */
+
+async function checkAdmin() {
+
+  try {
+
+    const data =
+      await api(
+        '/api/check-login'
+      );
+
+
+    if (
+      data.loggedIn !== true
+    ) {
+
+      window.location.href =
+        'login.html';
+
+      return false;
+
+    }
+
+
+    return true;
+
+  } catch (error) {
+
+    console.error(error);
+
+    return false;
+
+  }
+
+}
+
+
+/* =====================================================
+   التنقل بين الأقسام
+===================================================== */
+
+function openSection(sectionName) {
+
+  sections.forEach(section => {
+
+    section.classList.remove(
+      'active'
+    );
+
+  });
+
+
+  const target =
+    document.getElementById(
+      sectionName
+    );
+
+
+  if (target) {
+
+    target.classList.add(
+      'active'
+    );
+
+  }
+
+
+  navLinks.forEach(link => {
+
+    link.classList.toggle(
+      'active',
+      link.dataset.section ===
+      sectionName
+    );
+
+  });
+
+
+  const titles = {
+
+    dashboard:
+      'لوحة التحكم',
+
+    articles:
+      'إدارة المقالات',
+
+    users:
+      'المستخدمون'
+
+  };
+
+
+  pageTitle.textContent =
+    titles[sectionName] ||
+    'لوحة التحكم';
+
+
+  if (
+    sectionName === 'articles'
+  ) {
+
+    loadAllArticles();
+
+  }
+
+
+  if (
+    sectionName === 'users'
+  ) {
+
+    loadUsers();
+
+  }
+
+}
+
+
+navLinks.forEach(link => {
+
+  link.addEventListener(
+    'click',
+    () => {
+
+      openSection(
+        link.dataset.section
+      );
+
+    }
+  );
+
+});
+
+
+document
+  .querySelectorAll(
+    '[data-open-section]'
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      'click',
+      () => {
+
+        openSection(
+          button.dataset.openSection
+        );
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
+   تحميل الإحصائيات
+===================================================== */
+
+async function loadStats() {
+
+  try {
+
+    const data =
+      await api(
+        '/api/admin/stats'
+      );
+
+
+    const stats =
+      data.stats || {};
+
+
+    document.getElementById(
+      'articles-count'
+    ).textContent =
+      Number(
+        stats.articles || 0
+      ).toLocaleString('ar-EG');
+
+
+    document.getElementById(
+      'users-count'
+    ).textContent =
+      Number(
+        stats.users || 0
+      ).toLocaleString('ar-EG');
+
+
+    document.getElementById(
+      'views-count'
+    ).textContent =
+      Number(
+        stats.views || 0
+      ).toLocaleString('ar-EG');
+
+
+    document.getElementById(
+      'comments-count'
+    ).textContent =
+      Number(
+        stats.comments || 0
+      ).toLocaleString('ar-EG');
+
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* =====================================================
+   تحميل المقالات
+===================================================== */
+
+async function loadArticles() {
+
+  const container =
+    document.getElementById(
+      'latest-articles'
+    );
+
+
+  try {
+
+    const data =
+      await api(
+        '/api/admin/articles'
+      );
+
+
+    const articles =
+      data.articles || [];
+
+
+    renderArticles(
+      container,
+      articles.slice(0, 6)
+    );
+
+
+  } catch (error) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+        ❌ ${escapeHtml(error.message)}
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =====================================================
+   كل المقالات
+===================================================== */
+
+async function loadAllArticles() {
+
+  const container =
+    document.getElementById(
+      'all-articles'
+    );
+
+
+  container.innerHTML = `
+
+    <div class="loading">
+      جاري تحميل المقالات...
+    </div>
+
+  `;
+
+
+  try {
+
+    const data =
+      await api(
+        '/api/admin/articles'
+      );
+
+
+    renderArticles(
+      container,
+      data.articles || []
+    );
+
+
+  } catch (error) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+        ❌ ${escapeHtml(error.message)}
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =====================================================
+   عرض المقالات
+===================================================== */
+
+function renderArticles(
+  container,
+  articles
+) {
+
+  if (
+    !articles.length
+  ) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+        لا توجد مقالات حتى الآن.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    articles.map(article => {
+
+      const image =
+        article.image_url;
+
+
+      return `
+
+        <div class="article-row">
+
+          <div
+            class="article-thumb ${
+              image ? '' : 'no-image'
+            }"
+          >
+
+            ${
+              image
+
+              ? `
+                <img
+                  src="${escapeAttribute(image)}"
+                  alt=""
+                  loading="lazy"
+                >
+              `
+
+              : '📰'
+            }
+
+          </div>
+
+
+          <div class="article-info">
+
+            <h3>
+              ${escapeHtml(
+                article.title ||
+                'بدون عنوان'
+              )}
+            </h3>
+
+
+            <div class="article-meta">
+
+              <span>
+                📂 ${
+                  escapeHtml(
+                    article.category ||
+                    'عام'
+                  )
+                }
+              </span>
+
+              <span>
+                👁️ ${
+                  Number(
+                    article.views || 0
+                  ).toLocaleString('ar-EG')
+                }
+              </span>
+
+              <span>
+                🗓️ ${
+                  formatDate(
+                    article.created_at
+                  )
+                }
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="article-actions">
+
+            <button
+              class="small-btn view-btn"
+              onclick="viewArticle(${Number(article.id)})"
+            >
+              👁️ عرض
+            </button>
+
+
+            <button
+              class="small-btn delete-btn"
+              onclick="deleteArticle(${Number(article.id)})"
+            >
+              🗑️ حذف
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join('');
+
+}
+
+
+/* =====================================================
+   عرض مقال
+===================================================== */
+
+function viewArticle(id) {
+
+  window.open(
+    `article.html?id=${id}`,
+    '_blank'
+  );
+
+}
+
+
+/* =====================================================
+   حذف مقال
+===================================================== */
+
+async function deleteArticle(id) {
+
+  const confirmed =
+    confirm(
+      'هل أنت متأكد أنك تريد حذف هذا المقال؟\n\nلا يمكن التراجع عن هذه العملية.'
+    );
+
+
+  if (!confirmed) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const data =
+      await api(
+        `/api/articles/${id}`,
+        {
+          method: 'DELETE'
+        }
+      );
+
+
+    if (
+      data.success
+    ) {
+
+      showToast(
+        '✅ تم حذف المقال بنجاح'
+      );
+
+
+      await loadStats();
+
+      await loadArticles();
+
+      await loadAllArticles();
+
+    }
+
+  } catch (error) {
+
+    showToast(
+      '❌ ' +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   المستخدمون
+===================================================== */
+
+async function loadUsers() {
+
+  const container =
+    document.getElementById(
+      'users-container'
+    );
+
+
+  container.innerHTML = `
+
+    <div class="loading">
+      جاري تحميل المستخدمين...
+    </div>
+
+  `;
+
+
+  try {
+
+    const data =
+      await api(
+        '/api/admin/users'
+      );
+
+
+    const users =
+      data.users || [];
+
+
+    if (
+      !users.length
+    ) {
+
+      container.innerHTML = `
+
+        <div class="empty">
+          لا يوجد مستخدمون مسجلون حتى الآن.
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    container.innerHTML = `
+
+      <table class="user-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              #
+            </th>
+
+            <th>
+              الاسم
+            </th>
+
+            <th>
+              البريد الإلكتروني
+            </th>
+
+            <th>
+              تاريخ التسجيل
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          ${users.map(user => `
+
+            <tr>
+
+              <td>
+                ${Number(user.id)}
+              </td>
+
+              <td>
+                ${escapeHtml(
+                  user.name || ''
+                )}
+              </td>
+
+              <td>
+                ${escapeHtml(
+                  user.email || ''
+                )}
+              </td>
+
+              <td>
+                ${formatDate(
+                  user.created_at
+                )}
+              </td>
+
+            </tr>
+
+          `).join('')}
+
+        </tbody>
+
+      </table>
+
+    `;
+
+
+  } catch (error) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+        ❌ ${escapeHtml(error.message)}
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =====================================================
+   التاريخ
+===================================================== */
+
+function formatDate(value) {
+
+  if (!value) {
+
+    return 'غير معروف';
+
+  }
+
+
+  const date =
+    new Date(
+      value.replace(
+        ' ',
+        'T'
+      ) + 'Z'
+    );
+
+
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+
+    return value;
+
+  }
+
+
+  return date.toLocaleDateString(
+    'ar-EG',
+    {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    }
+  );
+
+}
+
+
+/* =====================================================
+   حماية HTML
+===================================================== */
+
+function escapeHtml(value) {
+
+  return String(value ?? '')
+    .replaceAll(
+      '&',
+      '&amp;'
+    )
+    .replaceAll(
+      '<',
+      '&lt;'
+    )
+    .replaceAll(
+      '>',
+      '&gt;'
+    )
+    .replaceAll(
+      '"',
+      '&quot;'
+    )
+    .replaceAll(
+      "'",
+      '&#039;'
+    );
+
+}
+
+
+function escapeAttribute(value) {
+
+  return escapeHtml(value);
+
+}
+
+
+/* =====================================================
+   تسجيل خروج الإدارة
+===================================================== */
+
+document
+  .getElementById(
+    'logout-btn'
+  )
+  .addEventListener(
+    'click',
+    async function () {
+
+      const confirmed =
+        confirm(
+          'هل تريد تسجيل الخروج من الإدارة؟'
+        );
+
+
+      if (!confirmed) {
+
+        return;
+
+      }
+
+
+      try {
+
+        await api(
+          '/api/logout',
+          {
+            method: 'POST'
+          }
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
+
+
+      window.location.href =
+        'index.html';
+
+    }
+  );
+
+
+/* =====================================================
+   تشغيل اللوحة
+===================================================== */
+
+(async function init() {
+
+  const authorized =
+    await checkAdmin();
+
+
+  if (!authorized) {
+
+    return;
+
+  }
+
+
+  await Promise.all([
+
+    loadStats(),
+
+    loadArticles()
+
+  ]);
+
+
+  console.log(
+    'مِداد: لوحة الإدارة تعمل بنجاح'
+  );
+
+})();
+
+</script>
+
+
+</body>
+</html>

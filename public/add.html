@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>إضافة مقال | مِداد</title>
+
+  <meta name="description"
+        content="لوحة إضافة ونشر المقالات في منصة مِداد">
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="style.css">
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(123,47,247,.12),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 90% 90%,
+          rgba(247,37,133,.12),
+          transparent 25%
+        ),
+        #fffaf5;
+      color: #241b2f;
+    }
+
+
+    /* ================================
+       الصفحة
+    ================================= */
+
+    .add-page {
+
+      min-height: 100vh;
+
+      padding:
+        45px 20px 80px;
+
+    }
+
+
+    .add-container {
+
+      width: 100%;
+
+      max-width: 1100px;
+
+      margin: auto;
+
+    }
+
+
+    /* ================================
+       الهيدر
+    ================================= */
+
+    .add-header {
+
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 45px 35px;
+
+      margin-bottom: 30px;
+
+      border-radius: 30px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #21152f,
+          #4b2370,
+          #7b2ff7,
+          #f72585
+        );
+
+      box-shadow:
+        0 25px 70px
+        rgba(53, 25, 80, .22);
+
+    }
+
+
+    .add-header::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,.08);
+
+      top: -120px;
+      left: -80px;
+
+    }
+
+
+    .add-header::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,.07);
+
+      bottom: -90px;
+      right: -50px;
+
+    }
+
+
+    .header-content {
+
+      position: relative;
+
+      z-index: 2;
+
+    }
+
+
+    .brand {
+
+      font-size: 42px;
+
+      font-weight: 900;
+
+      margin: 0 0 5px;
+
+    }
+
+
+    .subtitle {
+
+      margin: 0;
+
+      font-size: 17px;
+
+      opacity: .9;
+
+    }
+
+
+    /* ================================
+       الكارت الرئيسي
+    ================================= */
+
+    .editor-card {
+
+      background: white;
+
+      border-radius: 30px;
+
+      padding: 35px;
+
+      box-shadow:
+        0 20px 60px
+        rgba(43,29,61,.10);
+
+      border:
+        1px solid
+        rgba(123,47,247,.08);
+
+    }
+
+
+    .section-title {
+
+      margin: 0 0 25px;
+
+      font-size: 26px;
+
+      font-weight: 900;
+
+    }
+
+
+    /* ================================
+       الحقول
+    ================================= */
+
+    .field {
+
+      margin-bottom: 22px;
+
+    }
+
+
+    .field label {
+
+      display: block;
+
+      margin-bottom: 9px;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+    }
+
+
+    .field input,
+    .field textarea,
+    .field select {
+
+      width: 100%;
+
+      border: 2px solid #eee6f5;
+
+      border-radius: 15px;
+
+      padding: 14px 16px;
+
+      font-family: "Cairo", sans-serif;
+
+      font-size: 15px;
+
+      outline: none;
+
+      transition: .2s;
+
+      background: #fff;
+
+    }
+
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+
+      border-color: #7b2ff7;
+
+      box-shadow:
+        0 0 0 4px
+        rgba(123,47,247,.08);
+
+    }
+
+
+    .field textarea {
+
+      min-height: 300px;
+
+      resize: vertical;
+
+      line-height: 1.9;
+
+    }
+
+
+    /* ================================
+       الصورة
+    ================================= */
+
+    .image-box {
+
+      border:
+        2px dashed
+        #d9c9e8;
+
+      border-radius: 20px;
+
+      padding: 25px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fff,
+          #fbf7ff
+        );
+
+      transition: .2s;
+
+    }
+
+
+    .image-box:hover {
+
+      border-color: #7b2ff7;
+
+      background: #faf6ff;
+
+    }
+
+
+    .image-icon {
+
+      font-size: 48px;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .image-text {
+
+      margin:
+        0 0 15px;
+
+      color: #665b70;
+
+      font-size: 14px;
+
+    }
+
+
+    #image {
+
+      display: none;
+
+    }
+
+
+    .choose-image {
+
+      display: inline-block;
+
+      padding:
+        11px 22px;
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7b2ff7,
+          #f72585
+        );
+
+      color: white;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 10px 25px
+        rgba(123,47,247,.20);
+
+    }
+
+
+    .preview {
+
+      display: none;
+
+      margin-top: 20px;
+
+    }
+
+
+    .preview img {
+
+      max-width: 100%;
+
+      max-height: 350px;
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.15);
+
+    }
+
+
+    /* ================================
+       الأزرار
+    ================================= */
+
+    .actions {
+
+      display: flex;
+
+      gap: 15px;
+
+      flex-wrap: wrap;
+
+      margin-top: 30px;
+
+    }
+
+
+    .publish-btn {
+
+      border: 0;
+
+      border-radius: 15px;
+
+      padding:
+        14px 30px;
+
+      font-family: "Cairo", sans-serif;
+
+      font-size: 16px;
+
+      font-weight: 900;
+
+      color: white;
+
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7b2ff7,
+          #f72585
+        );
+
+      box-shadow:
+        0 12px 30px
+        rgba(123,47,247,.25);
+
+      transition: .2s;
+
+    }
+
+
+    .publish-btn:hover {
+
+      transform:
+        translateY(-2px);
+
+    }
+
+
+    .back-btn {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-decoration: none;
+
+      padding:
+        14px 25px;
+
+      border-radius: 15px;
+
+      background: #f3edf8;
+
+      color: #4b2370;
+
+      font-weight: 800;
+
+    }
+
+
+    .logout-btn {
+
+      border: 0;
+
+      border-radius: 15px;
+
+      padding:
+        14px 25px;
+
+      background: #fff0f2;
+
+      color: #c62845;
+
+      font-family: "Cairo", sans-serif;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+    }
+
+
+    /* ================================
+       الرسالة
+    ================================= */
+
+    #message {
+
+      display: none;
+
+      margin-top: 25px;
+
+      padding: 15px 18px;
+
+      border-radius: 14px;
+
+      font-weight: 700;
+
+    }
+
+
+    .success {
+
+      display: block !important;
+
+      background: #eaf9ef;
+
+      color: #18733a;
+
+      border:
+        1px solid #bce8cb;
+
+    }
+
+
+    .error {
+
+      display: block !important;
+
+      background: #fff0f2;
+
+      color: #b4233c;
+
+      border:
+        1px solid #f3c0ca;
+
+    }
+
+
+    /* ================================
+       حالة التحميل
+    ================================= */
+
+    .loading {
+
+      opacity: .7;
+
+      pointer-events: none;
+
+    }
+
+
+    /* ================================
+       موبايل
+    ================================= */
+
+    @media (max-width: 700px) {
+
+      .add-page {
+
+        padding:
+          20px 12px 50px;
+
+      }
+
+
+      .add-header {
+
+        padding: 30px 22px;
+
+        border-radius: 22px;
+
+      }
+
+
+      .brand {
+
+        font-size: 32px;
+
+      }
+
+
+      .editor-card {
+
+        padding: 22px 16px;
+
+        border-radius: 22px;
+
+      }
+
+
+      .actions {
+
+        flex-direction: column;
+
+      }
+
+
+      .publish-btn,
+      .back-btn,
+      .logout-btn {
+
+        width: 100%;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<div class="add-page">
+
+  <div class="add-container">
+
+
+    <!-- ==========================
+         HEADER
+    =========================== -->
+
+    <header class="add-header">
+
+      <div class="header-content">
+
+        <h1 class="brand">
+          مِداد
+        </h1>
+
+        <p class="subtitle">
+          لوحة إدارة ونشر المقالات
+        </p>
+
+      </div>
+
+    </header>
+
+
+    <!-- ==========================
+         EDITOR
+    =========================== -->
+
+    <main class="editor-card">
+
+      <h2 class="section-title">
+        ✍️ إضافة مقال جديد
+      </h2>
+
+
+      <form
+        id="article-form"
+        enctype="multipart/form-data"
+      >
+
+
+        <!-- العنوان -->
+
+        <div class="field">
+
+          <label for="title">
+            عنوان المقال
+          </label>
+
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="اكتب عنوان المقال..."
+            maxlength="300"
+            required
+          >
+
+        </div>
+
+
+        <!-- التصنيف -->
+
+        <div class="field">
+
+          <label for="category">
+            التصنيف
+          </label>
+
+          <select
+            id="category"
+            name="category"
+          >
+
+            <option value="عام">
+              عام
+            </option>
+
+            <option value="تعليم">
+              تعليم
+            </option>
+
+            <option value="تقنية">
+              تقنية
+            </option>
+
+            <option value="برمجة">
+              برمجة
+            </option>
+
+            <option value="ذكاء اصطناعي">
+              ذكاء اصطناعي
+            </option>
+
+            <option value="أخبار">
+              أخبار
+            </option>
+
+            <option value="ثقافة">
+              ثقافة
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- الوسوم -->
+
+        <div class="field">
+
+          <label for="tags">
+            الوسوم
+          </label>
+
+          <input
+            type="text"
+            id="tags"
+            name="tags"
+            placeholder="مثال: برمجة، تقنية، ذكاء اصطناعي"
+            maxlength="1000"
+          >
+
+        </div>
+
+
+        <!-- الصورة -->
+
+        <div class="field">
+
+          <label>
+            صورة المقال
+          </label>
+
+
+          <div class="image-box">
+
+            <div class="image-icon">
+              🖼️
+            </div>
+
+            <p class="image-text">
+              اختر صورة المقال مباشرة من جهازك
+            </p>
+
+
+            <label
+              for="image"
+              class="choose-image"
+            >
+              📁 اختيار صورة
+            </label>
+
+
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+            >
+
+
+            <div
+              class="preview"
+              id="preview"
+            >
+
+              <img
+                id="preview-image"
+                alt="معاينة الصورة"
+              >
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- المحتوى -->
+
+        <div class="field">
+
+          <label for="content">
+            محتوى المقال
+          </label>
+
+          <textarea
+            id="content"
+            name="content"
+            placeholder="اكتب محتوى المقال هنا..."
+            required
+          ></textarea>
+
+        </div>
+
+
+        <!-- الأزرار -->
+
+        <div class="actions">
+
+          <button
+            type="submit"
+            class="publish-btn"
+            id="publish-btn"
+          >
+            🚀 نشر المقال
+          </button>
+
+
+          <a
+            href="index.html"
+            class="back-btn"
+          >
+            ← العودة للموقع
+          </a>
+
+
+          <button
+            type="button"
+            class="logout-btn"
+            id="logout-btn"
+          >
+            🔒 تسجيل خروج الإدارة
+          </button>
+
+        </div>
+
+
+        <div id="message"></div>
+
+
+      </form>
+
+    </main>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   التحقق من صلاحية الإدارة
+===================================================== */
+
+async function checkAdmin() {
+
+  try {
+
+    const response =
+      await fetch(
+        '/api/check-login',
+        {
+          credentials: 'include'
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        'تعذر الاتصال بالسيرفر'
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    /* ==============================
+       الإدارة مسجلة بالفعل
+    ============================== */
+
+    if (data.loggedIn === true) {
+
+      return true;
+
+    }
+
+
+    /* ==============================
+       طلب كلمة المرور
+    ============================== */
+
+    const password =
+      prompt(
+        '🔐 صلاحية الإدارة مطلوبة\n\nاكتب كلمة مرور الإدارة:'
+      );
+
+
+    if (!password) {
+
+      window.location.href =
+        'index.html';
+
+      return false;
+
+    }
+
+
+    /* ==============================
+       تسجيل الدخول
+    ============================== */
+
+    const loginResponse =
+      await fetch(
+        '/api/login',
+        {
+
+          method: 'POST',
+
+          credentials: 'include',
+
+          headers: {
+            'Content-Type':
+              'application/json'
+          },
+
+          body:
+            JSON.stringify({
+              password: password
+            })
+
+        }
+      );
+
+
+    const loginData =
+      await loginResponse.json();
+
+
+    /* ==============================
+       كلمة المرور صحيحة
+    ============================== */
+
+    if (
+      loginResponse.ok &&
+      loginData.success === true
+    ) {
+
+      return true;
+
+    }
+
+
+    /* ==============================
+       كلمة المرور خاطئة
+    ============================== */
+
+    alert(
+      loginData.error ||
+      'كلمة المرور غير صحيحة'
+    );
+
+
+    window.location.href =
+      'index.html';
+
+
+    return false;
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      'تعذر الاتصال بالسيرفر.\n\nتأكد أن server.js يعمل.'
+    );
+
+
+    window.location.href =
+      'index.html';
+
+
+    return false;
+
+  }
+
+}
+
+
+/* =====================================================
+   فحص الإدارة قبل إظهار الصفحة
+===================================================== */
+
+(async function () {
+
+  const authorized =
+    await checkAdmin();
+
+
+  if (!authorized) {
+
+    return;
+
+  }
+
+
+  console.log(
+    'تم التحقق من صلاحية الإدارة بنجاح'
+  );
+
+})();
+
+
+/* =====================================================
+   معاينة الصورة
+===================================================== */
+
+const imageInput =
+  document.getElementById('image');
+
+const preview =
+  document.getElementById('preview');
+
+const previewImage =
+  document.getElementById('preview-image');
+
+
+imageInput.addEventListener(
+  'change',
+  function () {
+
+    const file =
+      this.files[0];
+
+
+    if (!file) {
+
+      preview.style.display =
+        'none';
+
+      previewImage.src =
+        '';
+
+      return;
+
+    }
+
+
+    if (
+      !file.type.startsWith(
+        'image/'
+      )
+    ) {
+
+      alert(
+        'من فضلك اختر ملف صورة فقط.'
+      );
+
+      this.value = '';
+
+      return;
+
+    }
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload =
+      function (event) {
+
+        previewImage.src =
+          event.target.result;
+
+        preview.style.display =
+          'block';
+
+      };
+
+
+    reader.readAsDataURL(
+      file
+    );
+
+  }
+);
+
+
+/* =====================================================
+   نشر المقال
+===================================================== */
+
+const form =
+  document.getElementById(
+    'article-form'
+  );
+
+const message =
+  document.getElementById(
+    'message'
+  );
+
+const publishButton =
+  document.getElementById(
+    'publish-btn'
+  );
+
+
+form.addEventListener(
+  'submit',
+  async function (event) {
+
+    event.preventDefault();
+
+
+    message.className = '';
+
+    message.textContent = '';
+
+
+    publishButton.textContent =
+      '⏳ جاري نشر المقال...';
+
+    publishButton.classList.add(
+      'loading'
+    );
+
+
+    try {
+
+      const formData =
+        new FormData(form);
+
+
+      const response =
+        await fetch(
+          '/api/articles',
+          {
+
+            method: 'POST',
+
+            credentials: 'include',
+
+            body: formData
+
+          }
+        );
+
+
+      const data =
+        await response.json();
+
+
+      /* =========================
+         نجاح
+      ========================== */
+if (
+  response.ok &&
+  data.success === true
+) {
+
+  message.className = 'success';
+
+  message.textContent =
+    '✅ تم نشر المقال بنجاح! جاري الانتقال إلى لوحة الإدارة...';
+
+  form.reset();
+
+  preview.style.display = 'none';
+
+  previewImage.src = '';
+
+  publishButton.textContent =
+    '✅ تم النشر بنجاح';
+
+  publishButton.classList.remove(
+    'loading'
+  );
+
+  /*
+    ننتظر لحظة بسيطة حتى تظهر رسالة
+    نجاح النشر، ثم ننتقل للوحة الإدارة.
+  */
+
+  setTimeout(() => {
+
+    window.location.href =
+      'admin.html';
+
+  }, 800);
+
+  return;
+}
+
+
+      /* =========================
+         انتهت الصلاحية
+      ========================== */
+
+      if (
+        response.status === 401
+      ) {
+
+        alert(
+          'انتهت صلاحية الإدارة. سيتم طلب كلمة المرور مرة أخرى.'
+        );
+
+
+        window.location.reload();
+
+        return;
+
+      }
+
+
+      /* =========================
+         خطأ عادي
+      ========================== */
+
+      message.className =
+        'error';
+
+      message.textContent =
+        '❌ ' +
+        (
+          data.error ||
+          'تعذر نشر المقال'
+        );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+
+      message.className =
+        'error';
+
+      message.textContent =
+        '❌ تعذر الاتصال بالسيرفر. تأكد أن server.js يعمل.';
+
+    }
+
+
+    publishButton.textContent =
+      '🚀 نشر المقال';
+
+    publishButton.classList.remove(
+      'loading'
+    );
+
+  }
+);
+
+
+/* =====================================================
+   تسجيل خروج الإدارة
+===================================================== */
+
+document
+  .getElementById('logout-btn')
+  .addEventListener(
+    'click',
+    async function () {
+
+      try {
+
+        await fetch(
+          '/api/logout',
+          {
+
+            method: 'POST',
+
+            credentials: 'include'
+
+          }
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
+
+
+      window.location.href =
+        'index.html';
+
+    }
+  );
+
+</script>
+
+
+</body>
+</html>

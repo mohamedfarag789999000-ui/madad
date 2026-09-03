@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>مِداد | المقال</title>
+  <meta name="description" content="اقرأ المقال كاملًا على منصة مِداد">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =====================================================
+       ARTICLE PAGE - MADAD
+    ===================================================== */
+
+    :root {
+      --primary: #6c35ff;
+      --primary-dark: #4d20c9;
+      --secondary: #f72585;
+      --orange: #ff7a18;
+      --dark: #171323;
+      --text: #30283d;
+      --muted: #746b82;
+      --bg: #f8f6fc;
+      --card: #ffffff;
+      --border: #ebe6f3;
+      --success: #19a974;
+      --danger: #e63946;
+      --shadow: 0 15px 45px rgba(58, 30, 100, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 5%, rgba(108, 53, 255, 0.08), transparent 25%),
+        radial-gradient(circle at 90% 20%, rgba(247, 37, 133, 0.07), transparent 25%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    /* ---------- Navbar ---------- */
+
+    .article-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      height: 76px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(23, 19, 35, 0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .article-brand {
+      color: white;
+      text-decoration: none;
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .article-brand span {
+      background: linear-gradient(
+        90deg,
+        #ff7a18,
+        #f72585,
+        #7b2ff7
+      );
+    -webkit-background-clip: text;
+background-clip: text; 
+-webkit-text-fill-color: transparent;
+    }
+
+    .article-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-action {
+      text-decoration: none;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+      padding: 9px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.25s;
+    }
+
+    .nav-action:hover {
+      background: rgba(255,255,255,0.16);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- Progress ---------- */
+
+    .reading-progress {
+      position: fixed;
+      top: 76px;
+      right: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(
+        90deg,
+        var(--orange),
+        var(--secondary),
+        var(--primary)
+      );
+      z-index: 1000;
+      transition: width 0.08s linear;
+    }
+
+    /* ---------- Main ---------- */
+
+    .article-page {
+      width: min(1150px, 94%);
+      margin: 45px auto 80px;
+    }
+
+    /* ---------- Breadcrumb ---------- */
+
+    .breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .breadcrumb a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .breadcrumb span {
+      opacity: 0.55;
+    }
+
+    /* ---------- Article Hero ---------- */
+
+    .article-hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+
+    .article-cover-wrapper {
+      position: relative;
+      width: 100%;
+      height: 470px;
+      background:
+        linear-gradient(
+          135deg,
+          #25134b,
+          #6429d9,
+          #f72585
+        );
+      overflow: hidden;
+    }
+
+    .article-cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-cover-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to top,
+          rgba(12, 8, 22, 0.90),
+          rgba(12, 8, 22, 0.12) 65%
+        );
+      pointer-events: none;
+    }
+
+    .cover-content {
+      position: absolute;
+      right: 42px;
+      left: 42px;
+      bottom: 38px;
+      color: white;
+    }
+
+    .article-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 15px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.24);
+      backdrop-filter: blur(12px);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .cover-content h1 {
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1.25;
+      margin: 0 0 15px;
+      font-weight: 900;
+      max-width: 900px;
+      text-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ---------- Layout ---------- */
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .article-main {
+      min-width: 0;
+    }
+
+    .article-body-card,
+    .comments-card,
+    .sidebar-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    /* ---------- Share Bar ---------- */
+
+    .share-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .share-title {
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 800;
+      padding: 9px 13px;
+      border-radius: 10px;
+      background: #f3effa;
+      color: var(--dark);
+      transition: 0.2s;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+      background: #e9e1f7;
+    }
+
+    /* ---------- Article Content ---------- */
+
+    .article-body-card {
+      padding: 42px;
+    }
+
+    .article-content {
+      font-size: 18px;
+      line-height: 2.05;
+      color: #383142;
+      overflow-wrap: anywhere;
+    }
+
+    .article-content p {
+      margin: 0 0 25px;
+    }
+
+    .article-content h2 {
+      font-size: 29px;
+      line-height: 1.4;
+      color: var(--dark);
+      margin: 38px 0 17px;
+      padding-right: 15px;
+      border-right: 5px solid var(--primary);
+    }
+
+    .article-content h3 {
+      font-size: 23px;
+      color: var(--dark);
+      margin: 30px 0 12px;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      padding-right: 28px;
+      margin-bottom: 25px;
+    }
+
+    .article-content li {
+      margin-bottom: 10px;
+    }
+
+    .article-content blockquote {
+      margin: 30px 0;
+      padding: 22px 25px;
+      border-right: 5px solid var(--secondary);
+      background: linear-gradient(
+        135deg,
+        #fff1f7,
+        #f4efff
+      );
+      border-radius: 15px;
+      font-weight: 700;
+      color: #4c4058;
+    }
+
+    .article-content img {
+      max-width: 100%;
+      border-radius: 18px;
+      margin: 25px auto;
+      display: block;
+    }
+
+    .article-content a {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .article-content code {
+      background: #f1edf8;
+      color: #6c35ff;
+      padding: 3px 8px;
+      border-radius: 7px;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    /* ---------- Tags ---------- */
+
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 35px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+    }
+
+    .article-tag {
+      background: #f1ecff;
+      color: var(--primary);
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* ---------- Sidebar ---------- */
+
+    .sidebar {
+      position: sticky;
+      top: 105px;
+    }
+
+    .sidebar-card {
+      padding: 23px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-title {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--dark);
+      margin-bottom: 18px;
+      padding-right: 12px;
+      border-right: 4px solid var(--orange);
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .info-row:last-child {
+      border-bottom: 0;
+    }
+
+    .info-label {
+      color: var(--muted);
+    }
+
+    .info-value {
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .back-home {
+      width: 100%;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      padding: 13px 15px;
+      border-radius: 13px;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      font-weight: 800;
+      transition: 0.25s;
+    }
+
+    .back-home:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(108,53,255,0.25);
+    }
+
+    /* ---------- Comments ---------- */
+
+    .comments-card {
+      margin-top: 28px;
+      padding: 30px;
+    }
+
+    .comments-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
+    .comments-header h2 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--dark);
+    }
+
+    .comment-count {
+      background: #f1ecff;
+      color: var(--primary);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .login-notice {
+      padding: 17px;
+      border-radius: 15px;
+      background: #fff5e9;
+      border: 1px solid #ffdcb8;
+      color: #744a1b;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .login-notice a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    .comment-form {
+      margin-bottom: 28px;
+    }
+
+    .comment-form textarea {
+      width: 100%;
+      min-height: 125px;
+      resize: vertical;
+      border: 2px solid var(--border);
+      border-radius: 15px;
+      padding: 15px;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .comment-form textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(108,53,255,0.08);
+    }
+
+    .comment-submit {
+      margin-top: 10px;
+      border: 0;
+      padding: 12px 22px;
+      border-radius: 12px;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      font-family: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .comment-submit:hover {
+      transform: translateY(-2px);
+    }
+
+    .comment-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .comments-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .comment {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comment:last-child {
+      border-bottom: 0;
+    }
+
+    .comment-top {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 10px;
+    }
+
+    .comment-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      color: white;
+      font-weight: 900;
+    }
+
+    .comment-user {
+      font-weight: 900;
+      color: var(--dark);
+    }
+
+    .comment-date {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .comment-content {
+      padding-right: 53px;
+      color: #51475d;
+      line-height: 1.9;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .comment-delete {
+      margin-right: 53px;
+      margin-top: 10px;
+      border: 0;
+      background: transparent;
+      color: var(--danger);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .empty-comments {
+      text-align: center;
+      padding: 35px 15px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    /* ---------- Loading ---------- */
+
+    .loading {
+      min-height: 300px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .loader {
+      width: 45px;
+      height: 45px;
+      border: 4px solid #e8e1f4;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: auto auto 15px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ---------- Error ---------- */
+
+    .error-box {
+      background: white;
+      border: 1px solid #ffd1d6;
+      color: var(--danger);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    /* ---------- Toast ---------- */
+
+    .toast {
+      position: fixed;
+      left: 25px;
+      bottom: 25px;
+      z-index: 2000;
+      background: #171323;
+      color: white;
+      padding: 13px 18px;
+      border-radius: 13px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+      font-size: 14px;
+      font-weight: 700;
+      transform: translateY(100px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 900px) {
+      .article-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .sidebar-card {
+        margin-bottom: 18px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .article-navbar {
+        height: 66px;
+        padding: 0 18px;
+      }
+
+      .article-brand {
+        font-size: 25px;
+      }
+
+      .article-nav-actions .nav-action:not(:last-child) {
+        display: none;
+      }
+
+      .reading-progress {
+        top: 66px;
+      }
+
+      .article-page {
+        width: 94%;
+        margin-top: 25px;
+      }
+
+      .article-cover-wrapper {
+        height: 390px;
+      }
+
+      .cover-content {
+        right: 22px;
+        left: 22px;
+        bottom: 25px;
+      }
+
+      .cover-content h1 {
+        font-size: 29px;
+      }
+
+      .article-meta {
+        gap: 8px 12px;
+        font-size: 12px;
+      }
+
+      .article-body-card {
+        padding: 25px 20px;
+      }
+
+      .article-content {
+        font-size: 16px;
+        line-height: 1.95;
+      }
+
+      .article-content h2 {
+        font-size: 23px;
+      }
+
+      .share-bar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .comments-card {
+        padding: 22px 18px;
+      }
+
+      .comment-content {
+        padding-right: 0;
+      }
+
+      .comment-delete {
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- شريط التنقل -->
+  <nav class="article-navbar">
+    <a href="index.html" class="article-brand">
+      <span>مِداد</span>
+    </a>
+
+    <div class="article-nav-actions">
+      <a href="index.html" class="nav-action">الرئيسية</a>
+      <a href="register.html" id="register-link" class="nav-action">إنشاء حساب</a>
+      <a href="user-login.html" id="login-link" class="nav-action">دخول</a>
+    </div>
+  </nav>
+
+  <!-- مؤشر القراءة -->
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <main class="article-page">
+
+    <!-- مسار الصفحة -->
+    <div class="breadcrumb">
+      <a href="index.html">الرئيسية</a>
+      <span>←</span>
+      <span>المقالات</span>
+      <span>←</span>
+      <strong id="breadcrumb-title">جاري التحميل...</strong>
+    </div>
+
+    <!-- المقال -->
+    <div id="article-container">
+      <div class="article-hero-card">
+        <div class="loading">
+          <div>
+            <div class="loader"></div>
+            جاري تحميل المقال...
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* =====================================================
+       MADAD ARTICLE ENGINE
+    ===================================================== */
+
+    const articleContainer =
+      document.getElementById('article-container');
+
+    const breadcrumbTitle =
+      document.getElementById('breadcrumb-title');
+
+    const toast =
+      document.getElementById('toast');
+
+    let currentArticleId = null;
+    let currentUser = null;
+    let currentArticle = null;
+
+    /* ---------- Helpers ---------- */
+
+    function escapeHTML(value) {
+      if (value === null || value === undefined) {
+        return '';
+      }
+
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    function getArticleId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    function formatDate(dateValue) {
+      if (!dateValue) {
+        return 'غير محدد';
+      }
+
+      const date = new Date(dateValue);
+
+      if (Number.isNaN(date.getTime())) {
+        return dateValue;
+      }
+
+      return date.toLocaleDateString('ar-EG', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
+    function getInitial(name) {
+      if (!name) return 'م';
+
+      return name.trim().charAt(0).toUpperCase();
+    }
+
+    /* ---------- Current User ---------- */
+
+    async function loadCurrentUser() {
+      try {
+        const response =
+          await fetch('/api/current-user');
+
+        const data = await response.json();
+
+        if (data.loggedIn) {
+          currentUser = data;
+
+          const loginLink =
+            document.getElementById('login-link');
+
+          const registerLink =
+            document.getElementById('register-link');
+
+          if (loginLink) {
+            loginLink.textContent = data.name;
+            loginLink.href = '#';
+          }
+
+          if (registerLink) {
+            registerLink.textContent = 'تسجيل الخروج';
+            registerLink.href = '#';
+
+            registerLink.onclick = async function(e) {
+              e.preventDefault();
+
+              try {
+                await fetch('/api/user-logout', {
+                  method: 'POST'
+                });
+
+                window.location.reload();
+
+              } catch (error) {
+                showToast('حدث خطأ أثناء تسجيل الخروج');
+              }
+            };
+          }
+        }
+
+      } catch (error) {
+        console.error(
+          'Current user error:',
+          error
+        );
+      }
+    }
+
+    /* ---------- Load Article ---------- */
+
+    async function loadArticle() {
+
+      currentArticleId = getArticleId();
+
+      if (!currentArticleId) {
+        articleContainer.innerHTML = `
+          <div class="error-box">
+            لم يتم تحديد المقال.
+            <br><br>
+            <a href="index.html" class="back-home">
+              العودة إلى الرئيسية
+            </a>
+          </div>
+        `;
+
+        return;
+      }
+
+      try {
+
+        const response =
+          await fetch(
+            '/api/articles/' +
+            encodeURIComponent(currentArticleId)
+          );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error || 'المقال غير موجود'
+          );
+        }
+
+        currentArticle = data;
+
+        renderArticle(data);
+
+        await loadComments();
+
+      } catch (error) {
+
+        console.error(error);
+
+        articleContainer.innerHTML = `
+          <div class="error-box">
+            ❌ ${escapeHTML(error.message)}
+            <br><br>
+            <a href="index.html" class="back-home">
+              العودة إلى الرئيسية
+            </a>
+          </div>
+        `;
+      }
+    }
+
+    /* ---------- Render Article ---------- */
+
+    function renderArticle(article) {
+
+      document.title =
+        `${article.title || 'مقال'} | مِداد`;
+
+      breadcrumbTitle.textContent =
+        article.title || 'المقال';
+
+      const title =
+        escapeHTML(article.title || 'بدون عنوان');
+
+      const category =
+        escapeHTML(
+          article.category || 'عام'
+        );
+
+      const image =
+        article.image_url
+          ? escapeHTML(article.image_url)
+          : '';
+
+      const tags =
+        article.tags
+          ? article.tags
+              .split(',')
+              .map(tag => tag.trim())
+              .filter(Boolean)
+          : [];
+
+      const tagsHTML =
+        tags.length
+          ? `
+            <div class="article-tags">
+              ${tags.map(tag => `
+                <span class="article-tag">
+                  #${escapeHTML(tag)}
+                </span>
+              `).join('')}
+            </div>
+          `
+          : '';
+
+      /*
+        ملاحظة:
+        content محفوظ كنص HTML في قاعدة البيانات.
+        نسمح هنا بالتنسيق الذي كتبه المدير.
+      */
+
+      const content =
+        article.content || '';
+
+      const imageHTML =
+        image
+          ? `
+            <img
+              class="article-cover"
+              src="${image}"
+              alt="${title}"
+              onerror="this.style.display='none';"
+            >
+          `
+          : '';
+
+      articleContainer.innerHTML = `
+
+        <article class="article-hero-card">
+
+          <div class="article-cover-wrapper">
+
+            ${imageHTML}
+
+            <div class="article-cover-overlay"></div>
+
+            <div class="cover-content">
+
+              <div class="article-category">
+                ✦ ${category}
+              </div>
+
+              <h1>
+                ${title}
+              </h1>
+
+              <div class="article-meta">
+
+                <span class="meta-item">
+                  📅
+                  ${formatDate(
+                    article.created_at ||
+                    article.date ||
+                    article.createdAt
+                  )}
+                </span>
+
+                <span class="meta-item">
+                  📖
+                  قراءة المقال
+                </span>
+
+                <span class="meta-item">
+                  💬
+                  التعليقات
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        <div class="article-layout">
+
+          <section class="article-main">
+
+            <div class="share-bar">
+
+              <span class="share-title">
+                شارك المقال
+              </span>
+
+              <div class="share-buttons">
+
+                <button
+                  class="share-btn"
+                  onclick="shareArticle()"
+                >
+                  📤 مشاركة
+                </button>
+
+                <button
+                  class="share-btn"
+                  onclick="copyArticleLink()"
+                >
+                  🔗 نسخ الرابط
+                </button>
+
+              </div>
+
+            </div>
+
+            <article class="article-body-card">
+
+              <div class="article-content">
+                ${content}
+              </div>
+
+              ${tagsHTML}
+
+            </article>
+
+            <section class="comments-card">
+
+              <div class="comments-header">
+
+                <h2>
+                  💬 التعليقات
+                </h2>
+
+                <span
+                  class="comment-count"
+                  id="comment-count"
+                >
+                  0
+                </span>
+
+              </div>
+
+              <div id="comment-form-container"></div>
+
+              <div
+                class="comments-list"
+                id="comments-list"
+              >
+                <div class="loading">
+                  جاري تحميل التعليقات...
+                </div>
+              </div>
+
+            </section>
+
+          </section>
+
+          <aside class="sidebar">
+
+            <div class="sidebar-card">
+
+              <h3 class="sidebar-title">
+                معلومات المقال
+              </h3>
+
+              <div class="info-row">
+
+                <span class="info-label">
+                  التصنيف
+                </span>
+
+                <span class="info-value">
+                  ${category}
+                </span>
+
+              </div>
+
+              <div class="info-row">
+
+                <span class="info-label">
+                  تاريخ النشر
+                </span>
+
+                <span class="info-value">
+                  ${formatDate(
+                    article.created_at ||
+                    article.date ||
+                    article.createdAt
+                  )}
+                </span>
+
+              </div>
+
+              <div class="info-row">
+
+                <span class="info-label">
+                  الحالة
+                </span>
+
+                <span
+                  class="info-value"
+                  style="color:#19a974"
+                >
+                  ● منشور
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="sidebar-card">
+
+              <h3 class="sidebar-title">
+                استكشف مِداد
+              </h3>
+
+              <a
+                href="index.html"
+                class="back-home"
+              >
+                ← العودة للمقالات
+              </a>
+
+            </div>
+
+          </aside>
+
+        </div>
+      `;
+
+      renderCommentForm();
+    }
+
+    /* ---------- Comment Form ---------- */
+
+    function renderCommentForm() {
+
+      const container =
+        document.getElementById(
+          'comment-form-container'
+        );
+
+      if (!container) return;
+
+      if (!currentUser) {
+
+        container.innerHTML = `
+
+          <div class="login-notice">
+
+            🔐
+            يجب تسجيل الدخول حتى تتمكن من إضافة تعليق.
+
+            <br>
+
+            <a href="user-login.html">
+              تسجيل الدخول
+            </a>
+
+            أو
+
+            <a href="register.html">
+              إنشاء حساب جديد
+            </a>
+
+          </div>
+
+        `;
+
+        return;
+      }
+
+      container.innerHTML = `
+
+        <form
+          class="comment-form"
+          id="comment-form"
+        >
+
+          <textarea
+            id="comment-content"
+            maxlength="2000"
+            placeholder="اكتب تعليقك هنا..."
+            required
+          ></textarea>
+
+          <button
+            type="submit"
+            class="comment-submit"
+            id="comment-submit"
+          >
+            💬 نشر التعليق
+          </button>
+
+        </form>
+
+      `;
+
+      document
+        .getElementById('comment-form')
+        .addEventListener(
+          'submit',
+          submitComment
+        );
+    }
+
+    /* ---------- Submit Comment ---------- */
+
+    async function submitComment(event) {
+
+      event.preventDefault();
+
+      const textarea =
+        document.getElementById(
+          'comment-content'
+        );
+
+      const button =
+        document.getElementById(
+          'comment-submit'
+        );
+
+      const content =
+        textarea.value.trim();
+
+      if (!content) {
+        showToast('اكتب تعليقك أولًا');
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'جاري النشر...';
+
+      try {
+
+        const response =
+          await fetch(
+            `/api/articles/${encodeURIComponent(currentArticleId)}/comments`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type':
+                  'application/json'
+              },
+              body: JSON.stringify({
+                content
+              })
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error ||
+            'تعذر نشر التعليق'
+          );
+        }
+
+        textarea.value = '';
+
+        showToast(
+          'تم نشر تعليقك بنجاح ✓'
+        );
+
+        await loadComments();
+
+      } catch (error) {
+
+        showToast(error.message);
+
+      } finally {
+
+        button.disabled = false;
+        button.textContent =
+          '💬 نشر التعليق';
+      }
+    }
+
+    /* ---------- Load Comments ---------- */
+
+    async function loadComments() {
+
+      const list =
+        document.getElementById(
+          'comments-list'
+        );
+
+      if (!list) return;
+
+      try {
+
+        const response =
+          await fetch(
+            `/api/articles/${encodeURIComponent(currentArticleId)}/comments`
+          );
+
+        const comments =
+          await response.json();
+
+        if (!Array.isArray(comments)) {
+          throw new Error(
+            'تعذر تحميل التعليقات'
+          );
+        }
+
+        const count =
+          document.getElementById(
+            'comment-count'
+          );
+
+        if (count) {
+          count.textContent =
+            comments.length;
+        }
+
+        if (comments.length === 0) {
+
+          list.innerHTML = `
+            <div class="empty-comments">
+              💭
+              <br>
+              لا توجد تعليقات حتى الآن.
+              <br>
+              كن أول شخص يشارك رأيه!
+            </div>
+          `;
+
+          return;
+        }
+
+        list.innerHTML =
+          comments.map(renderComment).join('');
+
+      } catch (error) {
+
+        console.error(error);
+
+        list.innerHTML = `
+          <div class="empty-comments">
+            تعذر تحميل التعليقات حاليًا.
+          </div>
+        `;
+      }
+    }
+
+    /* ---------- Render Comment ---------- */
+
+    function renderComment(comment) {
+
+      const name =
+        escapeHTML(
+          comment.user_name ||
+          'مستخدم'
+        );
+
+      const content =
+        escapeHTML(
+          comment.content || ''
+        );
+
+      const date =
+        formatDate(
+          comment.created_at ||
+          comment.date ||
+          comment.createdAt
+        );
+
+      const isOwner =
+        currentUser &&
+        Number(comment.user_id) ===
+        Number(getCurrentUserId());
+
+      return `
+
+        <div
+          class="comment"
+          data-comment-id="${comment.id}"
+        >
+
+          <div class="comment-top">
+
+            <div class="comment-avatar">
+              ${escapeHTML(
+                getInitial(
+                  comment.user_name
+                )
+              )}
+            </div>
+
+            <div>
+
+              <div class="comment-user">
+                ${name}
+              </div>
+
+              <span class="comment-date">
+                ${date}
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="comment-content">
+            ${content}
+          </div>
+
+          ${
+            isOwner
+              ? `
+                <button
+                  class="comment-delete"
+                  onclick="deleteComment(${comment.id})"
+                >
+                  🗑 حذف تعليقي
+                </button>
+              `
+              : ''
+          }
+
+        </div>
+
+      `;
+    }
+
+    /*
+      current-user API لا يعيد ID حاليًا،
+      لذلك نحاول استخدام القيمة إن أضيفت مستقبلًا.
+    */
+
+    function getCurrentUserId() {
+      return currentUser &&
+        currentUser.id
+        ? currentUser.id
+        : null;
+    }
+
+    /* ---------- Delete Comment ---------- */
+
+    async function deleteComment(id) {
+
+      if (!confirm(
+        'هل تريد حذف تعليقك؟'
+      )) {
+        return;
+      }
+
+      try {
+
+        const response =
+          await fetch(
+            `/api/comments/${encodeURIComponent(id)}`,
+            {
+              method: 'DELETE'
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error ||
+            'تعذر حذف التعليق'
+          );
+        }
+
+        showToast(
+          'تم حذف التعليق ✓'
+        );
+
+        await loadComments();
+
+      } catch (error) {
+
+        showToast(error.message);
+      }
+    }
+
+    /* ---------- Share ---------- */
+
+    async function shareArticle() {
+
+      const url =
+        window.location.href;
+
+      const title =
+        currentArticle?.title ||
+        'مقال من مِداد';
+
+      if (
+        navigator.share
+      ) {
+
+        try {
+
+          await navigator.share({
+            title,
+            text:
+              'اقرأ هذا المقال على مِداد',
+            url
+          });
+
+        } catch (error) {
+          // المستخدم أغلق نافذة المشاركة
+        }
+
+      } else {
+
+        await copyArticleLink();
+
+      }
+    }
+
+    async function copyArticleLink() {
+
+      try {
+
+        await navigator.clipboard.writeText(
+          window.location.href
+        );
+
+        showToast(
+          'تم نسخ رابط المقال ✓'
+        );
+
+      } catch (error) {
+
+        showToast(
+          'تعذر نسخ الرابط'
+        );
+      }
+    }
+
+    /* ---------- Reading Progress ---------- */
+
+    function updateReadingProgress() {
+
+      const article =
+        document.querySelector(
+          '.article-body-card'
+        );
+
+      const progress =
+        document.getElementById(
+          'reading-progress'
+        );
+
+      if (!article || !progress) {
+        return;
+      }
+
+      const articleTop =
+        article.offsetTop;
+
+      const articleHeight =
+        article.offsetHeight;
+
+      const scrollTop =
+        window.scrollY;
+
+      const windowHeight =
+        window.innerHeight;
+
+      const start =
+        articleTop - 120;
+
+      const end =
+        articleTop +
+        articleHeight -
+        windowHeight;
+
+      const percentage =
+        end <= start
+          ? 100
+          : (
+              (scrollTop - start) /
+              (end - start)
+            ) * 100;
+
+      const value =
+        Math.max(
+          0,
+          Math.min(100, percentage)
+        );
+
+      progress.style.width =
+        value + '%';
+    }
+
+    window.addEventListener(
+      'scroll',
+      updateReadingProgress,
+      { passive: true }
+    );
+
+    /* ---------- Start ---------- */
+
+    async function init() {
+
+      await loadCurrentUser();
+
+      await loadArticle();
+
+      updateReadingProgress();
+    }
+
+    init();
+
+  </script>
+
+</body>
+</html>
