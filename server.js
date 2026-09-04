@@ -22,14 +22,8 @@ const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const DATABASE_DIR = path.join(ROOT_DIR, 'database');
 const DATABASE_FILE = path.join(DATABASE_DIR, 'medad.db');
 const UPLOADS_DIR = path.join(PUBLIC_DIR, 'uploads');
-
-const ADMIN_PASSWORD =
-    process.env.ADMIN_PASSWORD || '123456';
-
-const SESSION_SECRET =
-    process.env.SESSION_SECRET ||
-    'medad-session-secret-change-later';
-
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const SESSION_SECRET = process.env.SESSION_SECRET;
 const isProduction =
     process.env.NODE_ENV === 'production';
 
@@ -2065,8 +2059,9 @@ app.use(
 ========================================================= */
 
 const server =
-    app.listen(
-        PORT,
+   app.listen(
+    PORT,
+    '0.0.0.0',
         () => {
             console.log('');
 
