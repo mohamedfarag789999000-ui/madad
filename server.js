@@ -26,6 +26,9 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const SESSION_SECRET = process.env.SESSION_SECRET;
 const isProduction =
     process.env.NODE_ENV === 'production';
+    if (isProduction) {
+    app.set('trust proxy', 1);
+}
 
 /* =========================================================
    إنشاء المجلدات
